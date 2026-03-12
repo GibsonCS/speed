@@ -48,10 +48,6 @@ public class User {
         return email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
     public static User create(String name, String lastname, String email, String password) {
         validateName(name);
         validateLastName(lastname);
@@ -62,35 +58,35 @@ public class User {
     }
 
     private static void validateName(String name) {
-        if (name.isEmpty()) throw new BusinessException("Name not must be null");
-        if (name.length() < 3) throw new BusinessException("Name not must be less than 3 characters");
-        if (name.length() > 20) throw new BusinessException("Name not must be more than 20 characters");
+        if (name == null || name.isBlank()) throw new BusinessException("Name cannot be null");
+        if (name.length() < 3) throw new BusinessException("Name cannot be less than 3 characters");
+        if (name.length() > 20) throw new BusinessException("Name cannot be more than 20 characters");
 
-        if (!name.matches("^[a-zA-Z]*$")) {
-            throw new BusinessException("Name should not contain special characters");
+        if (!name.matches("^[a-zA-ZÀ-ÿ ]+$")) {
+            throw new BusinessException("Name cannot contain special characters");
         }
     }
 
     private static void validateLastName(String lastname) {
-        if (lastname.isEmpty()) throw new BusinessException("Lastname not must be null");
-        if (lastname.length() < 3) throw new BusinessException("Lastname not must be less than 3 characters");
-        if (lastname.length() > 20) throw new BusinessException("Lastname not must be more than 20 characters");
+        if (lastname == null || lastname.isBlank()) throw new BusinessException("Lastname cannot be null");
+        if (lastname.length() < 3) throw new BusinessException("Lastname cannot be less than 3 characters");
+        if (lastname.length() > 20) throw new BusinessException("Lastname cannot be more than 20 characters");
 
-        if (!lastname.matches("^[a-zA-Z]*$")) {
-            throw new BusinessException("Lastname should not contain special characters");
+        if (!lastname.matches("^[a-zA-ZÀ-ÿ ]+$")) {
+            throw new BusinessException("Lastname cannot contain special characters");
         }
     }
 
     private static void validateEmail(String email) {
-        if (email.isEmpty()) throw new BusinessException("Email should not be empty");
+        if (email == null || email.isBlank()) throw new BusinessException("Email cannot be empty");
         if (!email.matches("^(.+)@(.+)$")) throw new BusinessException("Invalid email");
     }
 
     private static void validatePassword(String password) {
-        if (password.isEmpty()) throw new BusinessException("password should not be empty");
+        if (password == null || password.isBlank()) throw new BusinessException("password cannot be empty");
 
         if (password.length() < 6 || password.length() > 12) {
-            throw new BusinessException("password must be between 6 and 12 characters");
+            throw new BusinessException("password cannot be between 6 and 12 characters");
         }
     }
 }
