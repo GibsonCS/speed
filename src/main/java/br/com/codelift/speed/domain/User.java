@@ -1,31 +1,23 @@
 package br.com.codelift.speed.domain;
 
 import br.com.codelift.speed.exception.BusinessException;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 
 import java.util.UUID;
 
-@Entity
+
 public class User {
 
-    @Id
     private UUID id;
-    @Column(nullable = false)
     private String name;
-    @Column(nullable = false)
     private String lastname;
-    @Column(nullable = false, unique = true)
     private String email;
-    @Column(nullable = false)
     private String password;
 
     protected User() {
     }
 
-    private User(String name, String lastname, String email, String password) {
-        this.id = UUID.randomUUID();
+    private User(UUID id, String name, String lastname, String email, String password) {
+        this.id = id;
         this.name = name;
         this.lastname = lastname;
         this.email = email;
@@ -48,13 +40,17 @@ public class User {
         return email;
     }
 
-    public static User create(String name, String lastname, String email, String password) {
+    public String getPassword() {
+        return password;
+    }
+
+    public static User create(UUID id, String name, String lastname, String email, String password) {
         validateName(name);
         validateLastName(lastname);
         validateEmail(email);
         validatePassword(password);
 
-        return new User(name, lastname, email, password);
+        return new User(id, name, lastname, email, password);
     }
 
     private static void validateName(String name) {
