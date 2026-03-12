@@ -1,7 +1,6 @@
 package br.com.codelift.speed.domain;
 
 import br.com.codelift.speed.exception.BusinessException;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -15,8 +14,7 @@ class UserTest {
     private final String VALID_EMAIL = "gibson@gmail.com";
 
     @Test
-    @DisplayName("Should throw a business exception if the name is empty")
-    void test1() {
+    void shouldThrowExceptionWhenNameIsEmpty() {
         assertThrows(BusinessException.class, () -> User.create(
                 "",
                 VALID_LASTNAME,
@@ -26,8 +24,7 @@ class UserTest {
     }
 
     @Test
-    @DisplayName("Should throw a business exception if the name was less than 3 characters")
-    void test2() {
+    void shouldThrowExceptionWhenNameIsLessThanThreeCharacters() {
         assertThrows(BusinessException.class, () -> User.create(
                 "an",
                 VALID_LASTNAME,
@@ -37,8 +34,7 @@ class UserTest {
     }
 
     @Test
-    @DisplayName("Should throw a business exception if the name was more than 20 characters")
-    void test3() {
+    void shouldThrowExceptionWhenNameIsGreaterThanTwentyCharacters() {
         assertThrows(BusinessException.class, () -> User.create(
                 "asdfdsxfdadfdassdfdgfa",
                 VALID_LASTNAME,
@@ -48,8 +44,7 @@ class UserTest {
     }
 
     @Test
-    @DisplayName("Should throw a business exception if the name contains special characters")
-    void test4() {
+    void shouldThrowExceptionWhenNameContainsSpecialCharacters() {
         assertThrows(BusinessException.class, () -> User.create(
                 "asdasd!@",
                 VALID_LASTNAME,
@@ -59,8 +54,7 @@ class UserTest {
     }
 
     @Test
-    @DisplayName("Should throw a business exception if the lastname is empty")
-    void test5() {
+    void shouldThrowExceptionWhenLastNameIsEmpty() {
         assertThrows(BusinessException.class, () -> User.create(
                 VALID_NAME,
                 "",
@@ -70,8 +64,7 @@ class UserTest {
     }
 
     @Test
-    @DisplayName("Should throw a business exception if the lastname was less than 3 characters")
-    void test6() {
+    void shouldThrowExceptionWhenLastNameIsLessThanThreeCharacters() {
         assertThrows(BusinessException.class, () -> User.create(
                 VALID_NAME,
                 "as",
@@ -81,8 +74,7 @@ class UserTest {
     }
 
     @Test
-    @DisplayName("Should throw a business exception if the lastname was more than 20 characters")
-    void test7() {
+    void shouldThrowExceptionWhenLastNameIsGreaterThanTwentyCharacters() {
         assertThrows(BusinessException.class, () -> User.create(
                 VALID_NAME,
                 "djkfjaskdfddfldalasdknkdfmsd",
@@ -92,8 +84,7 @@ class UserTest {
     }
 
     @Test
-    @DisplayName("Should throw a business exception if the lastname contains special characters")
-    void test8() {
+    void shouldThrowExceptionWhenLastNameContainsSpecialCharacters() {
         assertThrows(BusinessException.class, () -> User.create(
                 VALID_NAME,
                 "asdasd!@",
@@ -103,8 +94,7 @@ class UserTest {
     }
 
     @Test
-    @DisplayName("Should throw a business exception if the email is empty")
-    void test9() {
+    void shouldThrowExceptionWhenEmailIsEmpty() {
         assertThrows(BusinessException.class, () -> User.create(
                 VALID_NAME,
                 VALID_LASTNAME,
@@ -114,8 +104,7 @@ class UserTest {
     }
 
     @Test
-    @DisplayName("Should throw a business exception if the email is invalid")
-    void test10() {
+    void shouldThrowExceptionWhenEmailIsInvalid() {
         assertThrows(BusinessException.class, () -> User.create(
                 VALID_NAME,
                 VALID_LASTNAME,
@@ -125,8 +114,7 @@ class UserTest {
     }
 
     @Test
-    @DisplayName("Should throw a business exception if the password is empty")
-    void test11() {
+    void shouldThrowExceptionWhenPasswordIsEmpty() {
         assertThrows(BusinessException.class, () -> User.create(
                 VALID_NAME,
                 VALID_LASTNAME,
@@ -136,8 +124,7 @@ class UserTest {
     }
 
     @Test
-    @DisplayName("Should throw a business exception if the password not have between 6 and 12 characters")
-    void test12() {
+    void shouldThrowExceptionWhenPasswordIsNotBetweenSixAndTwelveCharacters() {
         assertThrows(BusinessException.class, () -> User.create(
                 VALID_NAME,
                 VALID_LASTNAME,
@@ -147,8 +134,7 @@ class UserTest {
     }
 
     @Test
-    @DisplayName("Should create a valid user")
-    void test13() {
+    void shouldCreateValidUser() {
 
         User user = User.create(VALID_NAME, VALID_LASTNAME, VALID_EMAIL, VALID_PASSWORD);
 
