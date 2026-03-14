@@ -2,8 +2,9 @@ package br.com.codelift.speed.domain;
 
 import br.com.codelift.speed.exception.BusinessException;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
-
 
 public class User {
 
@@ -12,16 +13,18 @@ public class User {
     private String lastname;
     private String email;
     private String encryptedPassword;
+    private Set<UUID> roleIds = new HashSet<>();
 
     protected User() {
     }
 
-    private User(UUID id, String name, String lastname, String email, String password) {
+    private User(UUID id, String name, String lastname, String email, String password, UUID roleId) {
         this.id = id;
         this.name = name;
         this.lastname = lastname;
         this.email = email;
         this.encryptedPassword = password;
+        this.roleIds.add(roleId);
     }
 
     public UUID getId() {
@@ -44,13 +47,13 @@ public class User {
         return encryptedPassword;
     }
 
-    public static User create(UUID id, String name, String lastname, String email, String password) {
+    public static User create(UUID id, String name, String lastname, String email, String password, UUID roleId) {
         validateName(name);
         validateLastName(lastname);
         validateEmail(email);
         validatePassword(password);
 
-        return new User(id, name, lastname, email, password);
+        return new User(id, name, lastname, email, password, roleId);
     }
 
     private static void validateName(String name) {
