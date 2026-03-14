@@ -11,12 +11,12 @@ public class Service {
     private final BigDecimal price;
     private final ServiceStatus status;
 
-    private Service(UUID id, String name, String description, BigDecimal price, ServiceStatus active) {
+    private Service(UUID id, String name, String description, BigDecimal price, ServiceStatus status) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
-        this.status = active;
+        this.status = status;
     }
 
     public static Service create(UUID id, String name, String description, BigDecimal price, ServiceStatus status) {
