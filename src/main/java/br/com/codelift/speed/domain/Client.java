@@ -70,12 +70,17 @@ public class Client {
             Address address
     ) {
         validateClientId(id);
+        validateUserId(createdByUserId);
 
         return new Client(id, createdByUserId, cnpj, companyName, phoneNumber, email, address);
     }
 
     private static void validateClientId(UUID id) {
         if (id == null) throw new BusinessException("Client id cannot be null");
+    }
+
+    private static void validateUserId(UUID userId) {
+        if (userId == null) throw new BusinessException("User id cannot be null");
     }
 
 
