@@ -3,75 +3,70 @@
 
 ```mermaid
 classDiagram
-    class Usuario {
+    class User {
         <<Aggregate Root>>
         -Long id
         -String email
-        -String senhaCriptografada
-        -List~Long~ papelIds
-        +autenticar()
+        -String encryptedPassword
+        -List~Long~ roleIds
     }
 
-    class Papel {
+    class Role {
         <<Aggregate Root>>
         -Long id
-        -String nome
-        -List~String~ permissoes
+        -String name
+        -List~String~ permissions
     }
 
-    class Cliente {
+    class Client {
         <<Aggregate Root>>
         -Long id
-        -Long criadoPorUsuarioId
+        -Long createdByUserId
         -String cnpj
-        -String razaoSocial
-        -Telefone telefone
+        -String companyName
+        -Phone phone
         -String email
-        -Endereco endereco
-        +atualizarCadastro()
+        -Address address
     }
 
-    class Pedido {
+    class Order {
         <<Aggregate Root>>
         -Long id
-        -Long clienteId
-        -Long usuarioId
-        -StatusPedido status
-        -Instant dataPedido
-        -List~Evento~ eventos
-        +calcularTotal()
+        -Long clientId
+        -Long userId
+        -OrderStatus status
+        -Instant orderDate
+        -List~Event~ events
     }
 
-    class Evento {
-        <<Entidade>>
-        -Long servicoId
-        -Endereco enderecoExecucao
-        -StatusEvento status
-        -Instant dataEvento
-        -BigDecimal precoCobrado
+    class Event {
+        <<Entity>>
+        -Long serviceId
+        -Address executionAddress
+        -EventStatus status
+        -Instant eventDate
+        -BigDecimal chargedPrice
     }
 
-    class Servico {
+    class Service {
         <<Aggregate Root>>
         -Long id
-        -String nome
-        -BigDecimal precoBase
-        -String descricao
-        -StatusServico status
+        -String name
+        -BigDecimal price
+        -String description
+        -ServiceStatus status
     }
 
-    class Endereco {
-        <<Objeto de Valor>>
-        -String rua
-        -String cep
+    class Address {
+        <<Value Object>>
+        -String street
+        -String zipCode
     }
 
-    Usuario "1" --> "*" Papel : possui (via papelIds)
-    Cliente "*" --> "1" Usuario : criado por (via criadoPorUsuarioId)
-    Pedido "*" --> "1" Usuario : realizado por (via usuarioId)
-    Pedido "*" --> "1" Cliente : pertence ao (via clienteId)
-    Pedido "1" *-- "muitos" Evento : contém (composição)
-    Evento "*" --> "1" Servico : referencia (via servicoId)
-
-
+    User "1" --> "*" Role : has (via roleIds)
+    Client "*" --> "1" User : created by
+    Order "*" --> "1" User : created by
+    Order "*" --> "1" Client : belongs to
+    Order "1" *-- "*" Event : contains
+    Event "*" --> "1" Service : references
 ```
