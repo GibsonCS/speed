@@ -69,7 +69,6 @@ public class Client {
             String email,
             Address address
     ) {
-
         validateClientId(id);
 
         return new Client(id, createdByUserId, cnpj, companyName, phoneNumber, email, address);
