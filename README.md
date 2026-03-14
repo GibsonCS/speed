@@ -62,6 +62,8 @@ classDiagram
     class Address {
         <<Value Object>>
         -String street
+        -String neighborhood
+        -Character UF
         -String zipCode
     }
 
