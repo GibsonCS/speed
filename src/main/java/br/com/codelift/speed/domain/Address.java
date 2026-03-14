@@ -4,11 +4,11 @@ public class Address {
 
     private final String street;
     private final String neighborhood;
-    private final Character uf;
+    private final String uf;
     private final String zipCode;
 
 
-    private Address(String street, String neighborhood, Character uf, String zipCode) {
+    private Address(String street, String neighborhood, String uf, String zipCode) {
         this.street = street;
         this.neighborhood = neighborhood;
         this.uf = uf;
@@ -23,11 +23,16 @@ public class Address {
         return neighborhood;
     }
 
-    public Character getUf() {
+    public String getUf() {
         return uf;
     }
 
     public String getZipCode() {
         return zipCode;
+    }
+
+    public static Address create(String street, String neighborhood, String uf, String zipCode) {
+
+        return new Address(street, neighborhood, uf, zipCode);
     }
 }
