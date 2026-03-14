@@ -1,5 +1,7 @@
 package br.com.codelift.speed.domain;
 
+import br.com.codelift.speed.exception.BusinessException;
+
 import java.util.UUID;
 
 public class Client {
@@ -12,7 +14,15 @@ public class Client {
     private final String email;
     private final Address address;
 
-    private Client(UUID id, UUID createdByUserId, String cnpj, String companyName, Phone phoneNumber, String email, Address address) {
+    private Client(
+            UUID id,
+            UUID createdByUserId,
+            String cnpj,
+            String companyName,
+            Phone phoneNumber,
+            String email,
+            Address address
+    ) {
         this.id = id;
         this.createdByUserId = createdByUserId;
         this.cnpj = cnpj;
@@ -49,4 +59,25 @@ public class Client {
     public Address getAddress() {
         return address;
     }
+
+    public static Client create(
+            UUID id,
+            UUID createdByUserId,
+            String cnpj,
+            String companyName,
+            Phone phoneNumber,
+            String email,
+            Address address
+    ) {
+
+        validateClientId(id);
+
+        return new Client(id, createdByUserId, cnpj, companyName, phoneNumber, email, address);
+    }
+
+    private static void validateClientId(UUID id) {
+        if (id == null) throw new BusinessException("Client id cannot be null");
+    }
+
+
 }
