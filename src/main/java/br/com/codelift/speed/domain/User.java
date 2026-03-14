@@ -2,29 +2,25 @@ package br.com.codelift.speed.domain;
 
 import br.com.codelift.speed.exception.BusinessException;
 
-import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
 public class User {
 
-    private UUID id;
-    private String name;
-    private String lastname;
-    private String email;
-    private String encryptedPassword;
-    private Set<UUID> roleIds = new HashSet<>();
+    private final UUID id;
+    private final String name;
+    private final String lastname;
+    private final String email;
+    private final String encryptedPassword;
+    private final Set<UUID> roleIds;
 
-    protected User() {
-    }
-
-    private User(UUID id, String name, String lastname, String email, String password, UUID roleId) {
+    private User(UUID id, String name, String lastname, String email, String password, Set<UUID> roleIds) {
         this.id = id;
         this.name = name;
         this.lastname = lastname;
         this.email = email;
         this.encryptedPassword = password;
-        this.roleIds.add(roleId);
+        this.roleIds = roleIds;
     }
 
     public UUID getId() {
@@ -43,17 +39,21 @@ public class User {
         return email;
     }
 
-    public String getPassword() {
+    public String getEncryptedPassword() {
         return encryptedPassword;
     }
 
-    public static User create(UUID id, String name, String lastname, String email, String password, UUID roleId) {
+    public Set<UUID> getRoleIds() {
+        return roleIds;
+    }
+
+    public static User create(UUID id, String name, String lastname, String email, String password, Set<UUID> roleIds) {
         validateName(name);
         validateLastName(lastname);
         validateEmail(email);
         validatePassword(password);
 
-        return new User(id, name, lastname, email, password, roleId);
+        return new User(id, name, lastname, email, password, roleIds);
     }
 
     private static void validateName(String name) {
