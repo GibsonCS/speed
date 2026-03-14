@@ -3,43 +3,72 @@
 
 ```mermaid
 classDiagram
-class User {
-  -UUID id
-  -String name
-  -String lastname
-  -String email
-  -String password
+    class User {
+        <<Aggregate Root>>
+        -UUID id
+        -String name
+        -String lastname
+        -String email
+        -String encryptedPassword
+        -List~UUID~ roleIds
+    }
 
-  +UUID getId()
-  +String getName()
-  +String getLastname()
-  +String getEmail()
-  +String getPassword()
+    class Role {
+        <<Aggregate Root>>
+        -UUID id
+        -String name
+        -List~String~ permissions
+    }
 
-  -User(id, name, lastname, email, password)
+    class Client {
+        <<Aggregate Root>>
+        -UUID id
+        -UUID createdByUserId
+        -String cnpj
+        -String companyName
+        -Phone phone
+        -String email
+        -Address address
+    }
 
-  +static User create(id, name, lastname, email, password)
+    class Order {
+        <<Aggregate Root>>
+        -UUID id
+        -UUID clientId
+        -UUID userId
+        -OrderStatus status
+        -Instant orderDate
+        -List~Event~ events
+    }
 
-  -static validateName(name)
-  -static validateLastName(lastname)
-  -static validateEmail(email)
-  -static validatePassword(password)
-}
+    class Event {
+        <<Entity>>
+        -UUID serviceId
+        -Address executionAddress
+        -EventStatus status
+        -Instant eventDate
+        -BigDecimal chargedPrice
+    }
 
-class Service {
-  -UUID id
-  -String name
-  -String description
-  -BigDecimal price
-  -Boolean active
+    class Service {
+        <<Aggregate Root>>
+        -UUID id
+        -String name
+        -BigDecimal price
+        -String description
+        -ServiceStatus status
+    }
 
-  +UUID getId()
-  +String getName()
-  +String getDescription()
-  +BigDecimal getPrice()
-  +Boolean active()
+    class Address {
+        <<Value Object>>
+        -String street
+        -String zipCode
+    }
 
-  -Service(id, name, description, price, active)
-  +static Service create(id, name, description, price, active)
-}
+    User "1" --> "*" Role : has (via roleIds)
+    Client "*" --> "1" User : created by
+    Order "*" --> "1" User : created by
+    Order "*" --> "1" Client : belongs to
+    Order "1" *-- "*" Event : contains
+    Event "*" --> "1" Service : references
 ```
