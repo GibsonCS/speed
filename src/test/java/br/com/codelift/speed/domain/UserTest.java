@@ -15,6 +15,7 @@ class UserTest {
     private final String VALID_LASTNAME = "Silva";
     private final String VALID_PASSWORD = "125Adm$";
     private final String VALID_EMAIL = "gibson@gmail.com";
+    private final UUID VALID_ROLEID = UUID.randomUUID();
 
     @Test
     void shouldThrowExceptionWhenNameIsEmpty() {
@@ -23,7 +24,8 @@ class UserTest {
                 "",
                 VALID_LASTNAME,
                 VALID_EMAIL,
-                VALID_PASSWORD
+                VALID_PASSWORD,
+                VALID_ROLEID
         ));
     }
 
@@ -34,7 +36,8 @@ class UserTest {
                 "an",
                 VALID_LASTNAME,
                 VALID_EMAIL,
-                VALID_PASSWORD
+                VALID_PASSWORD,
+                VALID_ROLEID
         ));
     }
 
@@ -45,7 +48,8 @@ class UserTest {
                 "asdfdsxfdadfdassdfdgfa",
                 VALID_LASTNAME,
                 VALID_EMAIL,
-                VALID_PASSWORD
+                VALID_PASSWORD,
+                VALID_ROLEID
         ));
     }
 
@@ -56,7 +60,8 @@ class UserTest {
                 "asdasd!@",
                 VALID_LASTNAME,
                 VALID_EMAIL,
-                VALID_PASSWORD
+                VALID_PASSWORD,
+                VALID_ROLEID
         ));
     }
 
@@ -67,7 +72,8 @@ class UserTest {
                 VALID_NAME,
                 "",
                 VALID_EMAIL,
-                VALID_PASSWORD
+                VALID_PASSWORD,
+                VALID_ROLEID
         ));
     }
 
@@ -78,7 +84,8 @@ class UserTest {
                 VALID_NAME,
                 "as",
                 VALID_EMAIL,
-                VALID_PASSWORD
+                VALID_PASSWORD,
+                VALID_ROLEID
         ));
     }
 
@@ -89,7 +96,8 @@ class UserTest {
                 VALID_NAME,
                 "djkfjaskdfddfldalasdknkdfmsd",
                 VALID_EMAIL,
-                VALID_PASSWORD
+                VALID_PASSWORD,
+                VALID_ROLEID
         ));
     }
 
@@ -100,7 +108,8 @@ class UserTest {
                 VALID_NAME,
                 "asdasd!@",
                 VALID_EMAIL,
-                VALID_PASSWORD
+                VALID_PASSWORD,
+                VALID_ROLEID
         ));
     }
 
@@ -110,7 +119,8 @@ class UserTest {
                 VALID_ID, VALID_NAME,
                 VALID_LASTNAME,
                 "",
-                VALID_PASSWORD
+                VALID_PASSWORD,
+                VALID_ROLEID
         ));
     }
 
@@ -120,7 +130,8 @@ class UserTest {
                 VALID_ID, VALID_NAME,
                 VALID_LASTNAME,
                 "asdfcom",
-                VALID_PASSWORD
+                VALID_PASSWORD,
+                VALID_ROLEID
         ));
     }
 
@@ -130,7 +141,8 @@ class UserTest {
                 VALID_ID, VALID_NAME,
                 VALID_LASTNAME,
                 VALID_EMAIL,
-                ""
+                "",
+                VALID_ROLEID
         ));
     }
 
@@ -140,14 +152,15 @@ class UserTest {
                 VALID_ID, VALID_NAME,
                 VALID_LASTNAME,
                 VALID_EMAIL,
-                "12345"
+                "12345",
+                VALID_ROLEID
         ));
     }
 
     @Test
     void shouldCreateValidUser() {
 
-        User user = User.create(VALID_ID, VALID_NAME, VALID_LASTNAME, VALID_EMAIL, VALID_PASSWORD);
+        User user = User.create(VALID_ID, VALID_NAME, VALID_LASTNAME, VALID_EMAIL, VALID_PASSWORD, VALID_ROLEID);
 
         assertEquals(VALID_NAME, user.getName());
         assertEquals(VALID_LASTNAME, user.getLastname());
