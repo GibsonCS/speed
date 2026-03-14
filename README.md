@@ -4,14 +4,20 @@
 ```mermaid
 classDiagram
     class User {
-        <<Aggregate Root>>
-        -UUID id
-        -String name
-        -String lastname
-        -String email
-        -String encryptedPassword
-        -List~UUID~ roleIds
-    }
+        - UUID id
+        - String name
+        - String lastname
+        - String email
+        - String encryptedPassword
+        - Set~UUID~ roleIds
+        - User(id, name, lastname, email, encryptedPassword, roleIds)
+        + create(name, lastname, email, password, roleIds) Usuario$
+        + addRole(roleId) void
+        - validateName(name) void$
+        - validateLastName(lastname) void$
+        - validateEmail(email) void$
+        - validatePassword(password) void$
+    }    
 
     class Role {
         <<Aggregate Root>>
