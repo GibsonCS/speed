@@ -28,13 +28,20 @@ classDiagram
 
     class Client {
         <<Aggregate Root>>
-        -UUID id
-        -UUID createdByUserId
-        -String cnpj
-        -String companyName
-        -Phone phone
-        -String email
-        -Address address
+        - UUID id
+        - UUID createdByUserId
+        - String cnpj
+        - String companyName
+        - Phone phone
+        - String email
+        - Address address
+        - Client(id, createdByUserId, cnpj, companyName, phone, email, address)
+        + create(id, createdByUserId, cnpj, companyName, phone, email, address) Client$
+        - validateClientId(id) void$
+        - validateUserId(userId) void$
+        - validateCnpj(cnpj) void$
+        - validateCompanyName(companyName) void$
+        - validateEmail(email) void$
     }
 
     class Order {
