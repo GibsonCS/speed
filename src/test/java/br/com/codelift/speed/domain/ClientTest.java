@@ -31,4 +31,18 @@ class ClientTest {
         ));
     }
 
+    @Test
+    void shoudThrowBusinessExceptionIfUserIdIsNull() {
+
+        assertThrows(BusinessException.class, () -> Client.create(
+                VALID_ID,
+                null,
+                VALID_CNPJ,
+                VALID_COMPANYNAME,
+                VALID_PHONENUMBER,
+                VALID_EMAIL,
+                VALID_ADDRESS
+        ));
+    }
+
 }
