@@ -3,6 +3,8 @@ package br.com.codelift.speed.domain;
 import br.com.codelift.speed.exception.BusinessException;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -15,7 +17,7 @@ class UserTest {
     private final String VALID_LASTNAME = "Silva";
     private final String VALID_PASSWORD = "125Adm$";
     private final String VALID_EMAIL = "gibson@gmail.com";
-    private final UUID VALID_ROLEID = UUID.randomUUID();
+    private final Set<UUID> VALID_ROLEIDS = new HashSet<>();
 
     @Test
     void shouldThrowExceptionWhenNameIsEmpty() {
@@ -25,7 +27,7 @@ class UserTest {
                 VALID_LASTNAME,
                 VALID_EMAIL,
                 VALID_PASSWORD,
-                VALID_ROLEID
+                VALID_ROLEIDS
         ));
     }
 
@@ -37,7 +39,7 @@ class UserTest {
                 VALID_LASTNAME,
                 VALID_EMAIL,
                 VALID_PASSWORD,
-                VALID_ROLEID
+                VALID_ROLEIDS
         ));
     }
 
@@ -49,7 +51,7 @@ class UserTest {
                 VALID_LASTNAME,
                 VALID_EMAIL,
                 VALID_PASSWORD,
-                VALID_ROLEID
+                VALID_ROLEIDS
         ));
     }
 
@@ -61,7 +63,7 @@ class UserTest {
                 VALID_LASTNAME,
                 VALID_EMAIL,
                 VALID_PASSWORD,
-                VALID_ROLEID
+                VALID_ROLEIDS
         ));
     }
 
@@ -73,7 +75,7 @@ class UserTest {
                 "",
                 VALID_EMAIL,
                 VALID_PASSWORD,
-                VALID_ROLEID
+                VALID_ROLEIDS
         ));
     }
 
@@ -85,7 +87,7 @@ class UserTest {
                 "as",
                 VALID_EMAIL,
                 VALID_PASSWORD,
-                VALID_ROLEID
+                VALID_ROLEIDS
         ));
     }
 
@@ -97,7 +99,7 @@ class UserTest {
                 "djkfjaskdfddfldalasdknkdfmsd",
                 VALID_EMAIL,
                 VALID_PASSWORD,
-                VALID_ROLEID
+                VALID_ROLEIDS
         ));
     }
 
@@ -109,7 +111,7 @@ class UserTest {
                 "asdasd!@",
                 VALID_EMAIL,
                 VALID_PASSWORD,
-                VALID_ROLEID
+                VALID_ROLEIDS
         ));
     }
 
@@ -120,7 +122,7 @@ class UserTest {
                 VALID_LASTNAME,
                 "",
                 VALID_PASSWORD,
-                VALID_ROLEID
+                VALID_ROLEIDS
         ));
     }
 
@@ -131,7 +133,7 @@ class UserTest {
                 VALID_LASTNAME,
                 "asdfcom",
                 VALID_PASSWORD,
-                VALID_ROLEID
+                VALID_ROLEIDS
         ));
     }
 
@@ -142,7 +144,7 @@ class UserTest {
                 VALID_LASTNAME,
                 VALID_EMAIL,
                 "",
-                VALID_ROLEID
+                VALID_ROLEIDS
         ));
     }
 
@@ -153,14 +155,14 @@ class UserTest {
                 VALID_LASTNAME,
                 VALID_EMAIL,
                 "12345",
-                VALID_ROLEID
+                VALID_ROLEIDS
         ));
     }
 
     @Test
     void shouldCreateValidUser() {
 
-        User user = User.create(VALID_ID, VALID_NAME, VALID_LASTNAME, VALID_EMAIL, VALID_PASSWORD, VALID_ROLEID);
+        User user = User.create(VALID_ID, VALID_NAME, VALID_LASTNAME, VALID_EMAIL, VALID_PASSWORD, VALID_ROLEIDS);
 
         assertEquals(VALID_NAME, user.getName());
         assertEquals(VALID_LASTNAME, user.getLastname());
