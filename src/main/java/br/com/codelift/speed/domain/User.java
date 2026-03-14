@@ -56,6 +56,12 @@ public class User {
         return new User(id, name, lastname, email, password, roleIds);
     }
 
+    public void addRole(UUID roleId) {
+        if (this.roleIds.contains(roleId)) throw new BusinessException("Role already exists");
+
+        this.roleIds.add(roleId);
+    }
+
     private static void validateName(String name) {
         if (name == null || name.isBlank()) throw new BusinessException("Name cannot be null");
         if (name.length() < 3) throw new BusinessException("Name cannot be less than 3 characters");
