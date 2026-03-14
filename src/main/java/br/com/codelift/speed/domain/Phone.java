@@ -10,4 +10,8 @@ public class Phone {
     public String getPhoneNumber() {
         return phoneNumber;
     }
+
+    public static Phone create(String phoneNumber) {
+        return new Phone(phoneNumber);
+    }
 }
