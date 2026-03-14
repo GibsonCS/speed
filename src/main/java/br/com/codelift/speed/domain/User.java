@@ -11,7 +11,7 @@ public class User {
     private String name;
     private String lastname;
     private String email;
-    private String password;
+    private String encryptedPassword;
 
     protected User() {
     }
@@ -21,7 +21,7 @@ public class User {
         this.name = name;
         this.lastname = lastname;
         this.email = email;
-        this.password = password;
+        this.encryptedPassword = password;
     }
 
     public UUID getId() {
@@ -41,7 +41,7 @@ public class User {
     }
 
     public String getPassword() {
-        return password;
+        return encryptedPassword;
     }
 
     public static User create(UUID id, String name, String lastname, String email, String password) {
