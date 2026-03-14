@@ -5,23 +5,25 @@
 classDiagram
     class User {
         <<Aggregate Root>>
-        -Long id
+        -UUID id
+        -String name
+        -String lastname
         -String email
         -String encryptedPassword
-        -List~Long~ roleIds
+        -List~UUID~ roleIds
     }
 
     class Role {
         <<Aggregate Root>>
-        -Long id
+        -UUID id
         -String name
         -List~String~ permissions
     }
 
     class Client {
         <<Aggregate Root>>
-        -Long id
-        -Long createdByUserId
+        -UUID id
+        -UUID createdByUserId
         -String cnpj
         -String companyName
         -Phone phone
@@ -31,9 +33,9 @@ classDiagram
 
     class Order {
         <<Aggregate Root>>
-        -Long id
-        -Long clientId
-        -Long userId
+        -UUID id
+        -UUID clientId
+        -UUID userId
         -OrderStatus status
         -Instant orderDate
         -List~Event~ events
@@ -41,7 +43,7 @@ classDiagram
 
     class Event {
         <<Entity>>
-        -Long serviceId
+        -UUID serviceId
         -Address executionAddress
         -EventStatus status
         -Instant eventDate
@@ -50,7 +52,7 @@ classDiagram
 
     class Service {
         <<Aggregate Root>>
-        -Long id
+        -UUID id
         -String name
         -BigDecimal price
         -String description
