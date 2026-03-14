@@ -69,7 +69,7 @@ classDiagram
 
     class Phone {
         <<Value Object>>
-        -String number
+        -String phoneNumber
     }
 
     User "1" --> "*" Role : has (via roleIds)
