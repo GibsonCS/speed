@@ -11,7 +11,7 @@ classDiagram
         - String encryptedPassword
         - Set~UUID~ roleIds
         - User(id, name, lastname, email, encryptedPassword, roleIds)
-        + create(name, lastname, email, password, roleIds) Usuario$
+        + create(name, lastname, email, password, roleIds) User$
         + addRole(roleId) void
         - validateName(name) void$
         - validateLastName(lastname) void$
