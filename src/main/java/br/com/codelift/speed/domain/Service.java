@@ -9,19 +9,19 @@ public class Service {
     private final String name;
     private final String description;
     private final BigDecimal price;
-    private final Boolean active;
+    private final ServiceStatus status;
 
-    private Service(UUID id, String name, String description, BigDecimal price, Boolean active) {
+    private Service(UUID id, String name, String description, BigDecimal price, ServiceStatus active) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
-        this.active = active;
+        this.status = active;
     }
 
-    public static Service create(UUID id, String name, String description, BigDecimal price, Boolean active) {
+    public static Service create(UUID id, String name, String description, BigDecimal price, ServiceStatus status) {
 
-        return new Service(id, name, description, price, active);
+        return new Service(id, name, description, price, status);
     }
 
     public UUID getId() {
@@ -40,7 +40,7 @@ public class Service {
         return price;
     }
 
-    public Boolean getActive() {
-        return active;
+    public ServiceStatus getActive() {
+        return status;
     }
 }
