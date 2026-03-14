@@ -67,6 +67,11 @@ classDiagram
         -String zipCode
     }
 
+    class Phone {
+        <<Value Object>>
+        -String number
+    }
+
     User "1" --> "*" Role : has (via roleIds)
     Client "*" --> "1" User : created by
     Order "*" --> "1" User : created by
