@@ -11,7 +11,7 @@ class ClientTest {
 
     private final UUID VALID_ID = UUID.randomUUID();
     private final UUID VALID_createdByUserId = UUID.randomUUID();
-    private final String VALID_CNPJ = "01500124000-15";
+    private final String VALID_CNPJ = "01.700.151.0001-15";
     private final String VALID_COMPANYNAME = "EMPRESAX";
     private final Phone VALID_PHONENUMBER = Phone.create("(21)99654-4074");
     private final String VALID_EMAIL = "gibson@gibson.com";
@@ -69,6 +69,48 @@ class ClientTest {
                 VALID_COMPANYNAME,
                 VALID_PHONENUMBER,
                 VALID_EMAIL,
+                VALID_ADDRESS
+        ));
+    }
+
+    @Test
+    void shoudThrowBusinessExceptionIfCompanyNameIsNull() {
+
+        assertThrows(BusinessException.class, () -> Client.create(
+                VALID_ID,
+                VALID_createdByUserId,
+                VALID_CNPJ,
+                null,
+                VALID_PHONENUMBER,
+                VALID_EMAIL,
+                VALID_ADDRESS
+        ));
+    }
+
+    @Test
+    void shoudThrowBusinessExceptionIfEmailIsNull() {
+
+        assertThrows(BusinessException.class, () -> Client.create(
+                VALID_ID,
+                VALID_createdByUserId,
+                VALID_CNPJ,
+                VALID_COMPANYNAME,
+                VALID_PHONENUMBER,
+                null,
+                VALID_ADDRESS
+        ));
+    }
+
+    @Test
+    void shoudThrowBusinessExceptionIfTheEmailIsInvalid() {
+
+        assertThrows(BusinessException.class, () -> Client.create(
+                VALID_ID,
+                VALID_createdByUserId,
+                VALID_CNPJ,
+                VALID_COMPANYNAME,
+                VALID_PHONENUMBER,
+                "jfngfdfcom",
                 VALID_ADDRESS
         ));
     }
