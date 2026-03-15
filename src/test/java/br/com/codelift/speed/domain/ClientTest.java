@@ -45,4 +45,32 @@ class ClientTest {
         ));
     }
 
+    @Test
+    void shoudThrowBusinessExceptionCnpjIsNull() {
+
+        assertThrows(BusinessException.class, () -> Client.create(
+                VALID_ID,
+                VALID_createdByUserId,
+                null,
+                VALID_COMPANYNAME,
+                VALID_PHONENUMBER,
+                VALID_EMAIL,
+                VALID_ADDRESS
+        ));
+    }
+
+    @Test
+    void shoudThrowBusinessExceptionCnpjIsInvalid() {
+
+        assertThrows(BusinessException.class, () -> Client.create(
+                VALID_ID,
+                VALID_createdByUserId,
+                "01.700.151.0001-150",
+                VALID_COMPANYNAME,
+                VALID_PHONENUMBER,
+                VALID_EMAIL,
+                VALID_ADDRESS
+        ));
+    }
+
 }
