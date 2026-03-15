@@ -72,6 +72,8 @@ public class Client {
         validateClientId(id);
         validateUserId(createdByUserId);
         validateCnpj(cnpj);
+        validateCompanyName(companyName);
+        validateEmail(email);
 
         return new Client(id, createdByUserId, cnpj, companyName, phoneNumber, email, address);
     }
@@ -89,6 +91,18 @@ public class Client {
 
         if (!cnpj.matches("^\\d{2}.\\d{3}.\\d{3}.\\d{4}-\\d{2}$")) {
             throw new BusinessException("Insert a valid cnpj");
+        }
+    }
+
+    private static void validateCompanyName(String companyName) {
+        if (companyName == null) throw new BusinessException("Company name cannot be null");
+    }
+
+    private static void validateEmail(String email) {
+        if (email == null) throw new BusinessException("Email cannot be null");
+
+        if (!email.matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,}$")) {
+            throw new BusinessException("Insert a valid email");
         }
     }
 }
