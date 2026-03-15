@@ -71,6 +71,7 @@ public class Client {
     ) {
         validateClientId(id);
         validateUserId(createdByUserId);
+        validateCnpj(cnpj);
 
         return new Client(id, createdByUserId, cnpj, companyName, phoneNumber, email, address);
     }
@@ -83,5 +84,11 @@ public class Client {
         if (userId == null) throw new BusinessException("User id cannot be null");
     }
 
+    private static void validateCnpj(String cnpj) {
+        if (cnpj == null) throw new BusinessException("Insert a valid cnpj");
 
+        if (!cnpj.matches("^\\d{2}.\\d{3}.\\d{3}.\\d{4}-\\d{2}$")) {
+            throw new BusinessException("Insert a valid cnpj");
+        }
+    }
 }
