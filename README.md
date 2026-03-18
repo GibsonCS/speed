@@ -64,12 +64,23 @@ classDiagram
     }
 
     class Service {
-        <<Aggregate Root>>
         -UUID id
         -String name
-        -BigDecimal price
         -String description
+        -BigDecimal price
         -ServiceStatus status
+        -Service(id, name, description, price, status)
+        +getId() UUID
+        +getName() String
+        +getDescription() String
+        +getPrice() BigDecimal
+        +getActive() ServiceStatus
+        +create(id, name, description, price, status)$ Service
+        -validateName(name)$ void
+        -validatePrice(price)$ void
+        -validateDescription(description)$ void
+        +disableService() void
+        +updatePrice(newPrice) void
     }
 
     class Address {
