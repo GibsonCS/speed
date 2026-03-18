@@ -78,4 +78,19 @@ class ServiceTest {
         assertThrows(BusinessException.class, service::disableService);
         assertEquals(ServiceStatus.DISABLE, service.getActive());
     }
+
+    @Test
+    void shouldUpdatePrice() {
+        Service service = Service.create(
+                VALID_ID,
+                VALID_NAME,
+                VALID_DESCRIPTION,
+                VALID_PRICE,
+                ServiceStatus.ENABLE
+        );
+
+        service.updatePrice(new BigDecimal("3333.33"));
+
+        assertEquals(new BigDecimal("3333.33"), service.getPrice());
+    }
 }
