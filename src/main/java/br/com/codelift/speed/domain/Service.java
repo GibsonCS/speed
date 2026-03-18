@@ -10,7 +10,7 @@ public class Service {
     private final UUID id;
     private final String name;
     private final String description;
-    private final BigDecimal price;
+    private BigDecimal price;
     private final ServiceStatus status;
 
     private Service(UUID id, String name, String description, BigDecimal price, ServiceStatus status) {
@@ -75,5 +75,10 @@ public class Service {
         if (this.status == ServiceStatus.DISABLE) {
             throw new BusinessException("Service is already disable");
         }
+    }
+
+    public void updatePrice(BigDecimal newPrice) {
+        validatePrice(price);
+        this.price = newPrice;
     }
 }
