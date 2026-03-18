@@ -54,4 +54,15 @@ class ServiceTest {
         ));
     }
 
+    @Test
+    void shouldNotCreateServiceWithNullOrEmptyDescription() {
+        assertThrows(BusinessException.class, () -> Service.create(
+                VALID_ID,
+                VALID_NAME,
+                "",
+                VALID_PRICE,
+                ServiceStatus.ENABLE
+        ));
+    }
+
 }
