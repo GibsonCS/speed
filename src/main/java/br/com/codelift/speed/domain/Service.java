@@ -19,7 +19,14 @@ public class Service {
         this.status = status;
     }
 
-    public static Service create(UUID id, String name, String description, BigDecimal price, ServiceStatus status) {
+    //
+    public static Service create(
+            UUID id,
+            String name,
+            String description,
+            BigDecimal price,
+            ServiceStatus status
+    ) {
 
         return new Service(id, name, description, price, status);
     }
