@@ -65,4 +65,17 @@ class ServiceTest {
         ));
     }
 
+    @Test
+    void shouldThrowABusinessExceptionIfTheServiceIsAlreadyDisable() {
+        Service service = Service.create(
+                VALID_ID,
+                VALID_NAME,
+                VALID_DESCRIPTION,
+                VALID_PRICE,
+                ServiceStatus.DISABLE
+        );
+
+        assertThrows(BusinessException.class, service::disableService);
+        assertEquals(ServiceStatus.DISABLE, service.getActive());
+    }
 }
