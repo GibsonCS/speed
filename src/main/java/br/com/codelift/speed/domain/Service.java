@@ -49,6 +49,7 @@ public class Service {
             ServiceStatus status
     ) {
         validateName(name);
+        validatePrice(price);
 
         return new Service(id, name, description, price, status);
     }
@@ -56,4 +57,11 @@ public class Service {
     private static void validateName(String name) {
         if (name == null || name.isBlank()) throw new BusinessException("Name cannot be null");
     }
+
+    private static void validatePrice(BigDecimal price) {
+        if (price.compareTo(BigDecimal.valueOf(50)) < 0) {
+            throw new BusinessException("Value cannot be less than R$50,00");
+        }
+    }
+
 }
