@@ -70,4 +70,10 @@ public class Service {
             throw new BusinessException("Description cannot be null");
         }
     }
+
+    public void disableService() {
+        if (this.status == ServiceStatus.DISABLE) {
+            throw new BusinessException("Service is already disable");
+        }
+    }
 }
