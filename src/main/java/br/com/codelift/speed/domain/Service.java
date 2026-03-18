@@ -50,6 +50,7 @@ public class Service {
     ) {
         validateName(name);
         validatePrice(price);
+        validateDescription(description);
 
         return new Service(id, name, description, price, status);
     }
@@ -64,4 +65,9 @@ public class Service {
         }
     }
 
+    private static void validateDescription(String description) {
+        if (description == null || description.isBlank()) {
+            throw new BusinessException("Description cannot be null");
+        }
+    }
 }
