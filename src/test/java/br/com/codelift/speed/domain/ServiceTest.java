@@ -43,4 +43,15 @@ class ServiceTest {
         ));
     }
 
+    @Test
+    void shouldNotCreateServiceWithInvalidPrice() {
+        assertThrows(BusinessException.class, () -> Service.create(
+                VALID_ID,
+                VALID_NAME,
+                VALID_DESCRIPTION,
+                new BigDecimal("49.99"),
+                ServiceStatus.ENABLE
+        ));
+    }
+
 }
