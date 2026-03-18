@@ -54,13 +54,26 @@ classDiagram
         -List~Event~ events
     }
 
-    class Event {
-        <<Entity>>
+    class OrderItem {
         -UUID serviceId
         -Address executionAddress
-        -EventStatus status
-        -Instant eventDate
+        -OrderItemStatus status
+        -Instant executionDate
         -BigDecimal chargedPrice
+        
+        -OrderItem(serviceId, executionAddress, status, executionDate, chargedPrice)
+        
+        +getServiceId() UUID
+        +getExecutionAddress() Address
+        +getStatus() OrderItemStatus
+        +getExecutionDate() Instant
+        +getChargedPrice() BigDecimal
+        
+        +create(serviceId, executionAddress, status, executionDate, chargedPrice)$ OrderItem
+        
+        -validateServiceId(serviceId)$ void
+        -validateExecutionDate(executionDate)$ void
+        -validateChargedPrice(chargedPrice)$ void
     }
 
     class Service {
@@ -100,6 +113,6 @@ classDiagram
     Client "*" --> "1" User : created by
     Order "*" --> "1" User : created by
     Order "*" --> "1" Client : belongs to
-    Order "1" *-- "*" Event : contains
-    Event "*" --> "1" Service : references
+    Order "1" *-- "*" OrderItem : contains
+    OrderItem "*" --> "1" Service : references
 ```
