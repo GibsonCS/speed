@@ -1,11 +1,13 @@
 package br.com.codelift.speed.domain;
 
+import br.com.codelift.speed.exception.BusinessException;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ServiceTest {
 
@@ -28,6 +30,17 @@ class ServiceTest {
         assertEquals(VALID_NAME, service.getName());
         assertEquals(VALID_DESCRIPTION, service.getDescription());
         assertEquals(VALID_PRICE, service.getPrice());
+    }
+
+    @Test
+    void shouldNotCreateServiceWithEmptyName() {
+        assertThrows(BusinessException.class, () -> Service.create(
+                VALID_ID,
+                "",
+                VALID_DESCRIPTION,
+                VALID_PRICE,
+                ServiceStatus.ENABLE
+        ));
     }
 
 }
