@@ -1,5 +1,7 @@
 package br.com.codelift.speed.domain;
 
+import br.com.codelift.speed.exception.BusinessException;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
@@ -53,6 +55,7 @@ public class OrderItem {
             LocalDate executionDate,
             BigDecimal chargedPrice
     ) {
+        validateServiceId(serviceId);
 
         return new OrderItem(
                 serviceId,
@@ -60,5 +63,9 @@ public class OrderItem {
                 status, executionDate,
                 chargedPrice
         );
+    }
+
+    private static void validateServiceId(UUID serviceId) {
+        if (serviceId == null) throw new BusinessException("Service id cannot be null");
     }
 }
