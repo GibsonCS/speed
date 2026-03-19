@@ -1,4 +1,4 @@
-package br.com.codelift.speed.domain;
+package br.com.codelift.speed.domain.vo;
 
 import java.util.Objects;
 
