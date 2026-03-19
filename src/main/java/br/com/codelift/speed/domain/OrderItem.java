@@ -56,6 +56,7 @@ public class OrderItem {
             BigDecimal chargedPrice
     ) {
         validateServiceId(serviceId);
+        validateExecutionDate(executionDate);
 
         return new OrderItem(
                 serviceId,
@@ -67,5 +68,9 @@ public class OrderItem {
 
     private static void validateServiceId(UUID serviceId) {
         if (serviceId == null) throw new BusinessException("Service id cannot be null");
+    }
+
+    private static void validateExecutionDate(LocalDate executionDate) {
+        if (executionDate.isBefore(LocalDate.now())) throw new BusinessException("Invalid date");
     }
 }
