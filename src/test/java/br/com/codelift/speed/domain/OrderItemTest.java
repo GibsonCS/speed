@@ -1,5 +1,6 @@
 package br.com.codelift.speed.domain;
 
+import br.com.codelift.speed.exception.BusinessException;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -7,6 +8,7 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class OrderItemTest {
 
@@ -36,6 +38,18 @@ class OrderItemTest {
         assertEquals(VALID_SERVICEID, orderItem.getServiceId());
         assertEquals(VALID_EXECUTION_ADDRESS, orderItem.getexecutionAddress());
         assertEquals(VALID_EXECUTION_DATE, orderItem.getExecutionDate());
+    }
+
+    @Test
+    void shouldThrowBusinessExceptionIfTheServiceIdIsNull() {
+
+        assertThrows(BusinessException.class, () -> OrderItem.create(
+                null,
+                VALID_EXECUTION_ADDRESS,
+                VALID_STATUS,
+                VALID_EXECUTION_DATE,
+                VALID_CHARGED_PRICE
+        ));
     }
 
 }
