@@ -37,7 +37,7 @@ A API orquestra o fluxo entre usuários e prestadores de serviço através das s
 
 O projeto está sendo construído seguindo uma estratégia **Inside-Out** (do núcleo para a periferia), garantindo que as regras de negócio sejam sólidas antes da exposição de qualquer interface externa.
 
-- [x] **Setup e Arquitetura:** Inicialização do ecossistema Java 17/Spring Boot 3 e definição da estrutura de pastas.
+- [x] **Setup e Arquitetura:** Inicialização do ecossistema Java 17/Spring Boot 4.0.3 e definição da estrutura de pastas.
 - [ ] **Core de Domínio (WIP):** Implementação de Agregados, Entidades e *Value Objects* com lógica de autovalidação.
 - [ ] **Camada de Aplicação:** Desenvolvimento dos Casos de Uso (*Use Cases*).
 - [ ] **Adaptadores de Interface:** Implementação de *Controllers* REST e mapeamento de DTOs.
