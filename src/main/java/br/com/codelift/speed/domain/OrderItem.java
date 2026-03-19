@@ -57,6 +57,7 @@ public class OrderItem {
     ) {
         validateServiceId(serviceId);
         validateExecutionDate(executionDate);
+        validateChargedPrice(chargedPrice);
 
         return new OrderItem(
                 serviceId,
@@ -72,5 +73,11 @@ public class OrderItem {
 
     private static void validateExecutionDate(LocalDate executionDate) {
         if (executionDate.isBefore(LocalDate.now())) throw new BusinessException("Invalid date");
+    }
+
+    private static void validateChargedPrice(BigDecimal chargedPrice) {
+        if (chargedPrice.compareTo(BigDecimal.valueOf(0)) <= 0) {
+            throw new BusinessException("Charged price must be more than 0");
+        }
     }
 }
