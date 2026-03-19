@@ -38,7 +38,9 @@ class OrderItemTest {
 
         assertEquals(VALID_SERVICEID, orderItem.getServiceId());
         assertEquals(VALID_EXECUTION_ADDRESS, orderItem.getexecutionAddress());
+        assertEquals(VALID_STATUS, orderItem.getStatus());
         assertEquals(VALID_EXECUTION_DATE, orderItem.getExecutionDate());
+        assertEquals(VALID_CHARGED_PRICE, orderItem.getChargedPrice());
     }
 
     @Test
