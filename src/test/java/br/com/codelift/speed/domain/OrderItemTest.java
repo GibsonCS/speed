@@ -27,7 +27,7 @@ class OrderItemTest {
 
     @Test
     void shouldCreateOrderItem() {
-        
+
         OrderItem orderItem = OrderItem.create(
                 VALID_SERVICEID,
                 VALID_EXECUTION_ADDRESS,
@@ -62,6 +62,18 @@ class OrderItemTest {
                 VALID_STATUS,
                 LocalDate.of(2026, 3, 17),
                 VALID_CHARGED_PRICE
+        ));
+    }
+
+    @Test
+    void shouldThrowBusinessExceptionToInvalidChargedPrice() {
+
+        assertThrows(BusinessException.class, () -> OrderItem.create(
+                VALID_SERVICEID,
+                VALID_EXECUTION_ADDRESS,
+                VALID_STATUS,
+                VALID_EXECUTION_DATE,
+                BigDecimal.valueOf(0)
         ));
     }
 }
