@@ -1,5 +1,7 @@
 package br.com.codelift.speed.domain;
 
+import java.util.Objects;
+
 public class Address {
 
     private final String street;
@@ -7,6 +9,10 @@ public class Address {
     private final String uf;
     private final String zipCode;
 
+    public static Address create(String street, String neighborhood, String uf, String zipCode) {
+
+        return new Address(street, neighborhood, uf, zipCode);
+    }
 
     private Address(String street, String neighborhood, String uf, String zipCode) {
         this.street = street;
@@ -31,8 +37,20 @@ public class Address {
         return zipCode;
     }
 
-    public static Address create(String street, String neighborhood, String uf, String zipCode) {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
 
-        return new Address(street, neighborhood, uf, zipCode);
+        if (!(o instanceof Address address)) return false;
+
+        return Objects.equals(street, address.street) && Objects.equals(neighborhood, address.neighborhood)
+                && Objects.equals(uf, address.uf)
+                && Objects.equals(zipCode, address.zipCode
+        );
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(street, neighborhood, uf, zipCode);
     }
 }
