@@ -1,5 +1,5 @@
 package br.com.codelift.speed.domain;
 
-public enum EventStatus {
+public enum OrderItemStatus {
     PENDING, CONFIRMED, EXECUTED, CANCELED
 }
