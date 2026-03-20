@@ -1,17 +1,17 @@
 package br.com.codelift.speed.domain.vo;
 
-import br.com.codelift.speed.exception.BusinessException;
-
 import java.util.Objects;
 import java.util.UUID;
 
 public class Id {
 
     private final UUID value;
-    
-    private static void validate(UUID id) {
-        if (id == null) throw new BusinessException("Id cannot be null");
+
+    public static Id create(UUID value) {
+
+        return new Id(value);
     }
+
 
     private Id(UUID value) {
         this.value = value;
