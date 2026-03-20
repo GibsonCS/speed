@@ -4,6 +4,7 @@ import br.com.codelift.speed.domain.vo.Address;
 import br.com.codelift.speed.domain.vo.Email;
 import br.com.codelift.speed.exception.BusinessException;
 
+import java.util.Set;
 import java.util.UUID;
 
 public class Customer {
@@ -15,6 +16,7 @@ public class Customer {
     private final Phone phoneNumber;
     private final Email email;
     private final Address address;
+    private Set<UUID> orderIds;
 
     public static Customer create(
             UUID id,
@@ -23,7 +25,8 @@ public class Customer {
             String companyName,
             Phone phoneNumber,
             String email,
-            Address address
+            Address address,
+            UUID orderId
     ) {
         validateClientId(id);
         validateUserId(createdByUserId);
@@ -36,7 +39,8 @@ public class Customer {
                 cnpj, companyName,
                 phoneNumber,
                 Email.create(email),
-                address
+                address,
+                orderId
         );
     }
 
@@ -67,7 +71,8 @@ public class Customer {
             String companyName,
             Phone phoneNumber,
             Email email,
-            Address address
+            Address address,
+            UUID orderId
     ) {
         this.id = id;
         this.createdByUserId = createdByUserId;
