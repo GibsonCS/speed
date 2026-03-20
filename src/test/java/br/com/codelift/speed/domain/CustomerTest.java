@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 class CustomerTest {
 
@@ -118,6 +118,29 @@ class CustomerTest {
                 "jfngfdfcom",
                 VALID_ADDRESS, VALID_ORDER_ID
         ));
+    }
+
+    @Test
+    void shouldCreateAValidCustomer() {
+        Customer customer = Customer.create(
+                VALID_ID,
+                VALID_createdByUserId,
+                VALID_CNPJ,
+                VALID_COMPANYNAME,
+                VALID_PHONENUMBER,
+                VALID_EMAIL,
+                VALID_ADDRESS,
+                VALID_ORDER_ID
+        );
+
+
+        assertEquals(VALID_ID, customer.getId());
+        assertEquals(VALID_createdByUserId, customer.getCreatedByUserId());
+        assertEquals(VALID_CNPJ, customer.getCnpj());
+        assertEquals(VALID_COMPANYNAME, customer.getCompanyName());
+        assertEquals(VALID_EMAIL, customer.getEmail().getValue());
+        assertEquals(VALID_ADDRESS, customer.getAddress());
+        assertTrue(customer.getOrderIds().contains(VALID_ORDER_ID));
     }
 
 }
