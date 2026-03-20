@@ -1,5 +1,6 @@
 package br.com.codelift.speed.domain.entity;
 
+import br.com.codelift.speed.domain.vo.Email;
 import br.com.codelift.speed.domain.vo.Name;
 import br.com.codelift.speed.exception.BusinessException;
 
@@ -11,21 +12,23 @@ public class User {
     private final UUID id;
     private final Name name;
     private final Name lastname;
-    private final String email;
+    private final Email email;
     private final String encryptedPassword;
     private final Set<UUID> roleIds;
 
-    public static User create(UUID id, Name name, Name lastname, String email, String password, Set<UUID> roleIds) {
-        validateEmail(email);
+    public static User create(
+            UUID id,
+            Name name,
+            Name lastname,
+            Email email,
+            String password,
+            Set<UUID> roleIds
+    ) {
         validatePassword(password);
 
         return new User(id, name, lastname, email, password, roleIds);
     }
 
-    private static void validateEmail(String email) {
-        if (email == null || email.isBlank()) throw new BusinessException("Email cannot be empty");
-        if (!email.matches("^(.+)@(.+)$")) throw new BusinessException("Invalid email");
-    }
 
     private static void validatePassword(String password) {
         if (password == null || password.isBlank()) throw new BusinessException("password cannot be empty");
@@ -41,7 +44,14 @@ public class User {
         this.roleIds.add(roleId);
     }
 
-    private User(UUID id, Name name, Name lastname, String email, String password, Set<UUID> roleIds) {
+    private User(
+            UUID id,
+            Name name,
+            Name lastname,
+            Email email,
+            String password,
+            Set<UUID> roleIds
+    ) {
         this.id = id;
         this.name = name;
         this.lastname = lastname;
@@ -62,7 +72,7 @@ public class User {
         return lastname;
     }
 
-    public String getEmail() {
+    public Email getEmail() {
         return email;
     }
 
