@@ -1,6 +1,7 @@
 package br.com.codelift.speed.domain;
 
 import br.com.codelift.speed.domain.entity.User;
+import br.com.codelift.speed.domain.vo.Email;
 import br.com.codelift.speed.domain.vo.Name;
 import br.com.codelift.speed.exception.BusinessException;
 import org.junit.jupiter.api.Test;
@@ -27,7 +28,7 @@ class UserTest {
                 VALID_ID,
                 Name.create(""),
                 VALID_LASTNAME,
-                VALID_EMAIL,
+                Email.create(VALID_EMAIL),
                 VALID_PASSWORD,
                 VALID_ROLEIDS
         ));
@@ -39,7 +40,7 @@ class UserTest {
                 VALID_ID,
                 Name.create("an"),
                 VALID_LASTNAME,
-                VALID_EMAIL,
+                Email.create(VALID_EMAIL),
                 VALID_PASSWORD,
                 VALID_ROLEIDS
         ));
@@ -51,7 +52,7 @@ class UserTest {
                 VALID_ID,
                 Name.create("asdfdsxfdadfdassdfdgfa"),
                 VALID_LASTNAME,
-                VALID_EMAIL,
+                Email.create(VALID_EMAIL),
                 VALID_PASSWORD,
                 VALID_ROLEIDS
         ));
@@ -63,7 +64,7 @@ class UserTest {
                 VALID_ID,
                 Name.create("asdasd!@"),
                 VALID_LASTNAME,
-                VALID_EMAIL,
+                Email.create(VALID_EMAIL),
                 VALID_PASSWORD,
                 VALID_ROLEIDS
         ));
@@ -75,7 +76,7 @@ class UserTest {
                 VALID_ID,
                 VALID_NAME,
                 Name.create(""),
-                VALID_EMAIL,
+                Email.create(VALID_EMAIL),
                 VALID_PASSWORD,
                 VALID_ROLEIDS
         ));
@@ -87,7 +88,7 @@ class UserTest {
                 VALID_ID,
                 VALID_NAME,
                 Name.create("as"),
-                VALID_EMAIL,
+                Email.create(VALID_EMAIL),
                 VALID_PASSWORD,
                 VALID_ROLEIDS
         ));
@@ -99,7 +100,7 @@ class UserTest {
                 VALID_ID,
                 VALID_NAME,
                 Name.create("djkfjaskdfddfldalasdknkdfmsd"),
-                VALID_EMAIL,
+                Email.create(VALID_EMAIL),
                 VALID_PASSWORD,
                 VALID_ROLEIDS
         ));
@@ -111,7 +112,7 @@ class UserTest {
                 VALID_ID,
                 VALID_NAME,
                 Name.create("asdasd!@"),
-                VALID_EMAIL,
+                Email.create(VALID_EMAIL),
                 VALID_PASSWORD,
                 VALID_ROLEIDS
         ));
@@ -122,7 +123,7 @@ class UserTest {
         assertThrows(BusinessException.class, () -> User.create(
                 VALID_ID, VALID_NAME,
                 VALID_LASTNAME,
-                "",
+                Email.create(""),
                 VALID_PASSWORD,
                 VALID_ROLEIDS
         ));
@@ -133,7 +134,7 @@ class UserTest {
         assertThrows(BusinessException.class, () -> User.create(
                 VALID_ID, VALID_NAME,
                 VALID_LASTNAME,
-                "asdfcom",
+                Email.create("asdfcom"),
                 VALID_PASSWORD,
                 VALID_ROLEIDS
         ));
@@ -144,7 +145,7 @@ class UserTest {
         assertThrows(BusinessException.class, () -> User.create(
                 VALID_ID, VALID_NAME,
                 VALID_LASTNAME,
-                VALID_EMAIL,
+                Email.create(VALID_EMAIL),
                 "",
                 VALID_ROLEIDS
         ));
@@ -155,7 +156,7 @@ class UserTest {
         assertThrows(BusinessException.class, () -> User.create(
                 VALID_ID, VALID_NAME,
                 VALID_LASTNAME,
-                VALID_EMAIL,
+                Email.create(VALID_EMAIL),
                 "12345",
                 VALID_ROLEIDS
         ));
@@ -164,10 +165,17 @@ class UserTest {
     @Test
     void shouldCreateValidUser() {
 
-        User user = User.create(VALID_ID, VALID_NAME, VALID_LASTNAME, VALID_EMAIL, VALID_PASSWORD, VALID_ROLEIDS);
+        User user = User.create(
+                VALID_ID,
+                VALID_NAME,
+                VALID_LASTNAME,
+                Email.create(VALID_EMAIL),
+                VALID_PASSWORD,
+                VALID_ROLEIDS
+        );
 
         assertEquals(VALID_NAME, user.getName());
         assertEquals(VALID_LASTNAME, user.getLastname());
-        assertEquals(VALID_EMAIL, user.getEmail());
+        assertEquals(Email.create(VALID_EMAIL), user.getEmail());
     }
 }
