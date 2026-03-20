@@ -1,4 +1,4 @@
-package br.com.codelift.speed.domain;
+package br.com.codelift.speed.domain.entity;
 
 import java.util.UUID;
 

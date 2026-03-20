@@ -1,5 +1,6 @@
-package br.com.codelift.speed.domain;
+package br.com.codelift.speed.domain.entity;
 
+import br.com.codelift.speed.domain.ServiceStatus;
 import br.com.codelift.speed.exception.BusinessException;
 
 import java.math.BigDecimal;

@@ -1,5 +1,6 @@
 package br.com.codelift.speed.domain;
 
+import br.com.codelift.speed.domain.entity.User;
 import br.com.codelift.speed.exception.BusinessException;
 import org.junit.jupiter.api.Test;
 
