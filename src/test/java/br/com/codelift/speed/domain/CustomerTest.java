@@ -22,7 +22,7 @@ class CustomerTest {
     private final UUID VALID_ORDER_ID = UUID.randomUUID();
 
     @Test
-    void shoudThrowBusinessExceptionIfClientIdIsNull() {
+    void shouldThrowBusinessExceptionIfClientIdIsNull() {
 
         assertThrows(BusinessException.class, () -> Customer.create(
                 null,
@@ -37,7 +37,7 @@ class CustomerTest {
     }
 
     @Test
-    void shoudThrowBusinessExceptionIfUserIdIsNull() {
+    void shouldThrowBusinessExceptionIfUserIdIsNull() {
 
         assertThrows(BusinessException.class, () -> Customer.create(
                 VALID_ID,
@@ -51,7 +51,7 @@ class CustomerTest {
     }
 
     @Test
-    void shoudThrowBusinessExceptionCnpjIsNull() {
+    void shouldThrowBusinessExceptionCnpjIsNull() {
 
         assertThrows(BusinessException.class, () -> Customer.create(
                 VALID_ID,
@@ -65,7 +65,7 @@ class CustomerTest {
     }
 
     @Test
-    void shoudThrowBusinessExceptionCnpjIsInvalid() {
+    void shouldThrowBusinessExceptionCnpjIsInvalid() {
 
         assertThrows(BusinessException.class, () -> Customer.create(
                 VALID_ID,
@@ -79,7 +79,7 @@ class CustomerTest {
     }
 
     @Test
-    void shoudThrowBusinessExceptionIfCompanyNameIsNull() {
+    void shouldThrowBusinessExceptionIfCompanyNameIsNull() {
 
         assertThrows(BusinessException.class, () -> Customer.create(
                 VALID_ID,
@@ -93,7 +93,7 @@ class CustomerTest {
     }
 
     @Test
-    void shoudThrowBusinessExceptionIfEmailIsNull() {
+    void shouldThrowBusinessExceptionIfEmailIsNull() {
 
         assertThrows(BusinessException.class, () -> Customer.create(
                 VALID_ID,
@@ -107,7 +107,7 @@ class CustomerTest {
     }
 
     @Test
-    void shoudThrowBusinessExceptionIfTheEmailIsInvalid() {
+    void shouldThrowBusinessExceptionIfTheEmailIsInvalid() {
 
         assertThrows(BusinessException.class, () -> Customer.create(
                 VALID_ID,
