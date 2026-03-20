@@ -4,6 +4,7 @@ import br.com.codelift.speed.domain.vo.Address;
 import br.com.codelift.speed.domain.vo.Email;
 import br.com.codelift.speed.exception.BusinessException;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -16,7 +17,7 @@ public class Customer {
     private final Phone phoneNumber;
     private final Email email;
     private final Address address;
-    private Set<UUID> orderIds;
+    private final Set<UUID> orderIds = new HashSet<>();
 
     public static Customer create(
             UUID id,
@@ -81,6 +82,7 @@ public class Customer {
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.address = address;
+        this.orderIds.add(orderId);
     }
 
     public UUID getId() {
@@ -101,6 +103,14 @@ public class Customer {
 
     public Phone getPhone() {
         return phoneNumber;
+    }
+
+    public Phone getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public Set<UUID> getOrderIds() {
+        return orderIds;
     }
 
     public Email getEmail() {
