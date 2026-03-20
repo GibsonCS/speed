@@ -1,8 +1,9 @@
 package br.com.codelift.speed.domain.vo;
 
+import br.com.codelift.speed.exception.BusinessException;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class NameTest {
 
@@ -13,7 +14,12 @@ class NameTest {
 
         Name name = Name.create(VALID_NAME);
 
-        assertEquals(VALID_NAME, name.getValue());
+        Assertions.assertEquals(VALID_NAME, name.getValue());
     }
 
+    @Test
+    void shouldNotCreateAInvalidName() {
+
+        Assertions.assertThrows(BusinessException.class, () -> Name.create(""));
+    }
 }
