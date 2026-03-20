@@ -8,7 +8,7 @@ import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class ClientTest {
+class CustomerTest {
 
     private final UUID VALID_ID = UUID.randomUUID();
     private final UUID VALID_createdByUserId = UUID.randomUUID();
@@ -21,7 +21,7 @@ class ClientTest {
     @Test
     void shoudThrowBusinessExceptionIfClientIdIsNull() {
 
-        assertThrows(BusinessException.class, () -> Client.create(
+        assertThrows(BusinessException.class, () -> Customer.create(
                 null,
                 VALID_createdByUserId,
                 VALID_CNPJ,
@@ -35,7 +35,7 @@ class ClientTest {
     @Test
     void shoudThrowBusinessExceptionIfUserIdIsNull() {
 
-        assertThrows(BusinessException.class, () -> Client.create(
+        assertThrows(BusinessException.class, () -> Customer.create(
                 VALID_ID,
                 null,
                 VALID_CNPJ,
@@ -49,7 +49,7 @@ class ClientTest {
     @Test
     void shoudThrowBusinessExceptionCnpjIsNull() {
 
-        assertThrows(BusinessException.class, () -> Client.create(
+        assertThrows(BusinessException.class, () -> Customer.create(
                 VALID_ID,
                 VALID_createdByUserId,
                 null,
@@ -63,7 +63,7 @@ class ClientTest {
     @Test
     void shoudThrowBusinessExceptionCnpjIsInvalid() {
 
-        assertThrows(BusinessException.class, () -> Client.create(
+        assertThrows(BusinessException.class, () -> Customer.create(
                 VALID_ID,
                 VALID_createdByUserId,
                 "01.700.151.0001-150",
@@ -77,7 +77,7 @@ class ClientTest {
     @Test
     void shoudThrowBusinessExceptionIfCompanyNameIsNull() {
 
-        assertThrows(BusinessException.class, () -> Client.create(
+        assertThrows(BusinessException.class, () -> Customer.create(
                 VALID_ID,
                 VALID_createdByUserId,
                 VALID_CNPJ,
@@ -91,7 +91,7 @@ class ClientTest {
     @Test
     void shoudThrowBusinessExceptionIfEmailIsNull() {
 
-        assertThrows(BusinessException.class, () -> Client.create(
+        assertThrows(BusinessException.class, () -> Customer.create(
                 VALID_ID,
                 VALID_createdByUserId,
                 VALID_CNPJ,
@@ -105,7 +105,7 @@ class ClientTest {
     @Test
     void shoudThrowBusinessExceptionIfTheEmailIsInvalid() {
 
-        assertThrows(BusinessException.class, () -> Client.create(
+        assertThrows(BusinessException.class, () -> Customer.create(
                 VALID_ID,
                 VALID_createdByUserId,
                 VALID_CNPJ,

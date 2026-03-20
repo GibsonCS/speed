@@ -5,7 +5,7 @@ import br.com.codelift.speed.exception.BusinessException;
 
 import java.util.UUID;
 
-public class Client {
+public class Customer {
 
     private final UUID id;
     private final UUID createdByUserId;
@@ -15,7 +15,7 @@ public class Client {
     private final String email;
     private final Address address;
 
-    private Client(
+    private Customer(
             UUID id,
             UUID createdByUserId,
             String cnpj,
@@ -61,7 +61,7 @@ public class Client {
         return address;
     }
 
-    public static Client create(
+    public static Customer create(
             UUID id,
             UUID createdByUserId,
             String cnpj,
@@ -76,7 +76,7 @@ public class Client {
         validateCompanyName(companyName);
         validateEmail(email);
 
-        return new Client(id, createdByUserId, cnpj, companyName, phoneNumber, email, address);
+        return new Customer(id, createdByUserId, cnpj, companyName, phoneNumber, email, address);
     }
 
     private static void validateClientId(UUID id) {
