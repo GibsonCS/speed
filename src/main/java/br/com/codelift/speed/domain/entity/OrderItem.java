@@ -1,6 +1,6 @@
 package br.com.codelift.speed.domain.entity;
 
-import br.com.codelift.speed.domain.OrderItemStatus;
+import br.com.codelift.speed.domain.entity.enums.OrderItemStatus;
 import br.com.codelift.speed.domain.vo.Address;
 import br.com.codelift.speed.exception.BusinessException;
 

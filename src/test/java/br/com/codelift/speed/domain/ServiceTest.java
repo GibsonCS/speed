@@ -1,6 +1,7 @@
 package br.com.codelift.speed.domain;
 
 import br.com.codelift.speed.domain.entity.Service;
+import br.com.codelift.speed.domain.entity.enums.ServiceStatus;
 import br.com.codelift.speed.exception.BusinessException;
 import org.junit.jupiter.api.Test;
 
