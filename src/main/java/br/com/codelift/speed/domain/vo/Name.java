@@ -12,7 +12,7 @@ public class Name {
     }
 
     public static Name create(String value) {
-//        validate(value);
+        validate(value);
         return new Name(value);
     }
 
