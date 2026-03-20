@@ -19,6 +19,7 @@ class CustomerTest {
     private final Phone VALID_PHONENUMBER = Phone.create("(21)99654-4074");
     private final String VALID_EMAIL = "gibson@gibson.com";
     private final Address VALID_ADDRESS = Address.create("Street one", "nb01", "Rj", "26165445");
+    private final UUID VALID_ORDER_ID = UUID.randomUUID();
 
     @Test
     void shoudThrowBusinessExceptionIfClientIdIsNull() {
@@ -30,7 +31,8 @@ class CustomerTest {
                 VALID_COMPANYNAME,
                 VALID_PHONENUMBER,
                 VALID_EMAIL,
-                VALID_ADDRESS
+                VALID_ADDRESS,
+                VALID_ORDER_ID
         ));
     }
 
@@ -44,7 +46,7 @@ class CustomerTest {
                 VALID_COMPANYNAME,
                 VALID_PHONENUMBER,
                 VALID_EMAIL,
-                VALID_ADDRESS
+                VALID_ADDRESS, VALID_ORDER_ID
         ));
     }
 
@@ -58,7 +60,7 @@ class CustomerTest {
                 VALID_COMPANYNAME,
                 VALID_PHONENUMBER,
                 VALID_EMAIL,
-                VALID_ADDRESS
+                VALID_ADDRESS, VALID_ORDER_ID
         ));
     }
 
@@ -72,7 +74,7 @@ class CustomerTest {
                 VALID_COMPANYNAME,
                 VALID_PHONENUMBER,
                 VALID_EMAIL,
-                VALID_ADDRESS
+                VALID_ADDRESS, VALID_ORDER_ID
         ));
     }
 
@@ -86,7 +88,7 @@ class CustomerTest {
                 null,
                 VALID_PHONENUMBER,
                 VALID_EMAIL,
-                VALID_ADDRESS
+                VALID_ADDRESS, VALID_ORDER_ID
         ));
     }
 
@@ -100,7 +102,7 @@ class CustomerTest {
                 VALID_COMPANYNAME,
                 VALID_PHONENUMBER,
                 null,
-                VALID_ADDRESS
+                VALID_ADDRESS, VALID_ORDER_ID
         ));
     }
 
@@ -114,7 +116,7 @@ class CustomerTest {
                 VALID_COMPANYNAME,
                 VALID_PHONENUMBER,
                 "jfngfdfcom",
-                VALID_ADDRESS
+                VALID_ADDRESS, VALID_ORDER_ID
         ));
     }
 
