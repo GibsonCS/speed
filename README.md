@@ -58,14 +58,14 @@ classDiagram
     class User {
         <<Aggregate Root>>
         -UUID id
-        -String email
+        -Email email
         +create() User$
     }
     class Role {
         <<Aggregate Root>>
         -String name
     }
-    class Client {
+    class Customer {
         <<Aggregate Root>>
         -UUID createdByUserId
         -Address address
@@ -83,8 +83,8 @@ classDiagram
     }
 
     User "1" --> "*" Role : has
-    Client "*" --> "1" User : created by
-    Order "*" --> "1" Client : belongs to
+    Customer "*" --> "1" User : created by
+    Order "*" --> "1" Customer : belongs to
     Order "1" *-- "*" OrderItem : contains
     OrderItem "*" --> "1" Service : references
 
