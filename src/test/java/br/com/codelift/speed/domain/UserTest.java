@@ -1,6 +1,7 @@
 package br.com.codelift.speed.domain;
 
 import br.com.codelift.speed.domain.entity.User;
+import br.com.codelift.speed.domain.vo.Name;
 import br.com.codelift.speed.exception.BusinessException;
 import org.junit.jupiter.api.Test;
 
@@ -14,8 +15,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class UserTest {
 
     private final UUID VALID_ID = UUID.randomUUID();
-    private final String VALID_NAME = "Gibson";
-    private final String VALID_LASTNAME = "Silva";
+    private final Name VALID_NAME = Name.create("Gibson");
+    private final Name VALID_LASTNAME = Name.create("Silva");
     private final String VALID_PASSWORD = "125Adm$";
     private final String VALID_EMAIL = "gibson@gmail.com";
     private final Set<UUID> VALID_ROLEIDS = new HashSet<>();
@@ -24,7 +25,7 @@ class UserTest {
     void shouldThrowExceptionWhenNameIsEmpty() {
         assertThrows(BusinessException.class, () -> User.create(
                 VALID_ID,
-                "",
+                Name.create(""),
                 VALID_LASTNAME,
                 VALID_EMAIL,
                 VALID_PASSWORD,
@@ -36,7 +37,7 @@ class UserTest {
     void shouldThrowExceptionWhenNameIsLessThanThreeCharacters() {
         assertThrows(BusinessException.class, () -> User.create(
                 VALID_ID,
-                "an",
+                Name.create("an"),
                 VALID_LASTNAME,
                 VALID_EMAIL,
                 VALID_PASSWORD,
@@ -48,7 +49,7 @@ class UserTest {
     void shouldThrowExceptionWhenNameIsGreaterThanTwentyCharacters() {
         assertThrows(BusinessException.class, () -> User.create(
                 VALID_ID,
-                "asdfdsxfdadfdassdfdgfa",
+                Name.create("asdfdsxfdadfdassdfdgfa"),
                 VALID_LASTNAME,
                 VALID_EMAIL,
                 VALID_PASSWORD,
@@ -60,7 +61,7 @@ class UserTest {
     void shouldThrowExceptionWhenNameContainsSpecialCharacters() {
         assertThrows(BusinessException.class, () -> User.create(
                 VALID_ID,
-                "asdasd!@",
+                Name.create("asdasd!@"),
                 VALID_LASTNAME,
                 VALID_EMAIL,
                 VALID_PASSWORD,
@@ -73,7 +74,7 @@ class UserTest {
         assertThrows(BusinessException.class, () -> User.create(
                 VALID_ID,
                 VALID_NAME,
-                "",
+                Name.create(""),
                 VALID_EMAIL,
                 VALID_PASSWORD,
                 VALID_ROLEIDS
@@ -85,7 +86,7 @@ class UserTest {
         assertThrows(BusinessException.class, () -> User.create(
                 VALID_ID,
                 VALID_NAME,
-                "as",
+                Name.create("as"),
                 VALID_EMAIL,
                 VALID_PASSWORD,
                 VALID_ROLEIDS
@@ -97,7 +98,7 @@ class UserTest {
         assertThrows(BusinessException.class, () -> User.create(
                 VALID_ID,
                 VALID_NAME,
-                "djkfjaskdfddfldalasdknkdfmsd",
+                Name.create("djkfjaskdfddfldalasdknkdfmsd"),
                 VALID_EMAIL,
                 VALID_PASSWORD,
                 VALID_ROLEIDS
@@ -109,7 +110,7 @@ class UserTest {
         assertThrows(BusinessException.class, () -> User.create(
                 VALID_ID,
                 VALID_NAME,
-                "asdasd!@",
+                Name.create("asdasd!@"),
                 VALID_EMAIL,
                 VALID_PASSWORD,
                 VALID_ROLEIDS
