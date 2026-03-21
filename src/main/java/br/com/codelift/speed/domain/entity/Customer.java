@@ -6,8 +6,6 @@ import br.com.codelift.speed.domain.vo.Id;
 import br.com.codelift.speed.domain.vo.Phone;
 import br.com.codelift.speed.exception.BusinessException;
 
-import java.util.HashSet;
-import java.util.Set;
 import java.util.UUID;
 
 public class Customer {
@@ -19,7 +17,6 @@ public class Customer {
     private final Phone phoneNumber;
     private final Email email;
     private final Address address;
-    private final Set<Id> orderIds = new HashSet<>();
 
     public static Customer create(
             UUID id,
@@ -28,8 +25,8 @@ public class Customer {
             String companyName,
             Phone phoneNumber,
             String email,
-            Address address,
-            UUID orderId
+            Address address
+
     ) {
         validateCnpj(cnpj);
         validateCompanyName(companyName);
@@ -40,11 +37,11 @@ public class Customer {
                 cnpj, companyName,
                 phoneNumber,
                 Email.create(email),
-                address,
-                Id.create(orderId)
+                address
+
         );
     }
-    
+
     private static void validateCnpj(String cnpj) {
         if (cnpj == null) throw new BusinessException("Insert a valid cnpj");
 
@@ -64,8 +61,7 @@ public class Customer {
             String companyName,
             Phone phoneNumber,
             Email email,
-            Address address,
-            Id orderId
+            Address address
     ) {
         this.id = id;
         this.createdByUserId = createdByUserId;
@@ -74,7 +70,6 @@ public class Customer {
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.address = address;
-        this.orderIds.add(orderId);
     }
 
     public Id getId() {
@@ -99,10 +94,6 @@ public class Customer {
 
     public Phone getPhoneNumber() {
         return phoneNumber;
-    }
-
-    public Set<Id> getOrderIds() {
-        return orderIds;
     }
 
     public Email getEmail() {
