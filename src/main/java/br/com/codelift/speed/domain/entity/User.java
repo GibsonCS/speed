@@ -31,7 +31,9 @@ public class User {
 
 
     private static void validatePassword(String password) {
-        if (password == null || password.isBlank()) throw new BusinessException("password cannot be empty");
+        if (password == null || password.isBlank()) {
+            throw new BusinessException("password cannot be empty");
+        }
 
         if (password.length() < 6 || password.length() > 12) {
             throw new BusinessException("password cannot be between 6 and 12 characters");
@@ -39,9 +41,10 @@ public class User {
     }
 
     public void addRole(UUID roleId) {
-        if (this.roleIds.contains(roleId)) throw new BusinessException("Role already exists");
-
-        this.roleIds.add(roleId);
+        if (roleIds.contains(roleId)) {
+            throw new BusinessException("Role already exists");
+        }
+        roleIds.add(roleId);
     }
 
     private User(
