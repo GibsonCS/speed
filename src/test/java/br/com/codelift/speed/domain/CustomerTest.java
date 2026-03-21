@@ -2,13 +2,15 @@ package br.com.codelift.speed.domain;
 
 import br.com.codelift.speed.domain.entity.Customer;
 import br.com.codelift.speed.domain.vo.Address;
+import br.com.codelift.speed.domain.vo.Id;
 import br.com.codelift.speed.domain.vo.Phone;
 import br.com.codelift.speed.exception.BusinessException;
 import org.junit.jupiter.api.Test;
 
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class CustomerTest {
 
@@ -134,13 +136,15 @@ class CustomerTest {
         );
 
 
-        assertEquals(VALID_ID, customer.getId());
-        assertEquals(VALID_createdByUserId, customer.getCreatedByUserId());
+        assertEquals(VALID_ID, customer.getId().getValue());
+        assertEquals(VALID_createdByUserId, customer.getCreatedByUserId().getValue());
         assertEquals(VALID_CNPJ, customer.getCnpj());
         assertEquals(VALID_COMPANYNAME, customer.getCompanyName());
         assertEquals(VALID_EMAIL, customer.getEmail().getValue());
         assertEquals(VALID_ADDRESS, customer.getAddress());
-        assertTrue(customer.getOrderIds().contains(VALID_ORDER_ID));
-    }
 
+        Id id = customer.getOrderIds().stream().findFirst().get();
+
+        assertEquals(VALID_ORDER_ID, id.getValue());
+    }
 }
