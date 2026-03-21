@@ -1,4 +1,4 @@
-package br.com.codelift.speed.domain.entity;
+package br.com.codelift.speed.domain.vo;
 
 public class Phone {
     private final String phoneNumber;

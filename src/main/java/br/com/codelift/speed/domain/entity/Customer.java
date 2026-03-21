@@ -2,6 +2,7 @@ package br.com.codelift.speed.domain.entity;
 
 import br.com.codelift.speed.domain.vo.Address;
 import br.com.codelift.speed.domain.vo.Email;
+import br.com.codelift.speed.domain.vo.Phone;
 import br.com.codelift.speed.exception.BusinessException;
 
 import java.util.HashSet;
