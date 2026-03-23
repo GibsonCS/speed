@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.util.Map;
 
 public class Order {
+
     private final Id id;
     private final Id createdByUserId;
     private final Id customerId;

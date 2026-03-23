@@ -5,6 +5,7 @@ import br.com.codelift.speed.domain.vo.Id;
 import br.com.codelift.speed.exception.BusinessException;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 public class Service {
 
@@ -15,7 +16,7 @@ public class Service {
     private final ServiceStatus status;
 
     public static Service create(
-            Id id,
+            UUID id,
             String name,
             String description,
             BigDecimal price,
@@ -25,7 +26,13 @@ public class Service {
         validatePrice(price);
         validateDescription(description);
 
-        return new Service(id, name, description, price, status);
+        return new Service(
+                Id.create(id),
+                name,
+                description,
+                price,
+                status
+        );
     }
 
     private static void validateName(String name) {

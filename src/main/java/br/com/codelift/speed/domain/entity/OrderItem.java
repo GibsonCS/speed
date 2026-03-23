@@ -2,6 +2,7 @@ package br.com.codelift.speed.domain.entity;
 
 import br.com.codelift.speed.domain.entity.enums.OrderItemStatus;
 import br.com.codelift.speed.domain.vo.Address;
+import br.com.codelift.speed.domain.vo.Id;
 import br.com.codelift.speed.exception.BusinessException;
 
 import java.math.BigDecimal;
@@ -10,25 +11,27 @@ import java.util.UUID;
 
 public class OrderItem {
 
-    private final UUID serviceId;
+    private final Id id;
+    private final Id serviceId;
     private final Address executionAddress;
     private final OrderItemStatus status;
     private final LocalDate executionDate;
     private final BigDecimal chargedPrice;
-    
+
     public static OrderItem create(
+            UUID id,
             UUID serviceId,
             Address executionAddress,
             OrderItemStatus status,
             LocalDate executionDate,
             BigDecimal chargedPrice
     ) {
-        validateServiceId(serviceId);
         validateExecutionDate(executionDate);
         validateChargedPrice(chargedPrice);
 
         return new OrderItem(
-                serviceId,
+                Id.create(id),
+                Id.create(serviceId),
                 executionAddress,
                 status,
                 executionDate,
@@ -55,12 +58,14 @@ public class OrderItem {
     }
 
     private OrderItem(
-            UUID serviceId,
+            Id id,
+            Id serviceId,
             Address executionAddress,
             OrderItemStatus status,
             LocalDate executionDate,
             BigDecimal chargedPrice
     ) {
+        this.id = id;
         this.serviceId = serviceId;
         this.executionAddress = executionAddress;
         this.status = status;
@@ -68,7 +73,15 @@ public class OrderItem {
         this.chargedPrice = chargedPrice;
     }
 
-    public UUID getServiceId() {
+    public Id getId() {
+        return id;
+    }
+
+    public Address getExecutionAddress() {
+        return executionAddress;
+    }
+
+    public Id getServiceId() {
         return serviceId;
     }
 
