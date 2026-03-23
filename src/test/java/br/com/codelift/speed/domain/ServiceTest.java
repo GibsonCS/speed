@@ -28,7 +28,7 @@ class ServiceTest {
                 ServiceStatus.ENABLE
         );
 
-        assertEquals(VALID_ID, service.getId());
+        assertEquals(VALID_ID, service.getId().getValue());
         assertEquals(VALID_NAME, service.getName());
         assertEquals(VALID_DESCRIPTION, service.getDescription());
         assertEquals(VALID_PRICE, service.getPrice());
