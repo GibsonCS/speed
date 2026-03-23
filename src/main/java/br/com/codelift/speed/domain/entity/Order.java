@@ -5,7 +5,9 @@ import br.com.codelift.speed.domain.vo.Id;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class Order {
 
@@ -15,7 +17,25 @@ public class Order {
     private final LocalDateTime orderDate;
     private BigDecimal orderTotal;
     private OrderStatus status;
-    private Map<Id, OrderItem> orderItems;
+    private Map<Id, OrderItem> orderItems = new HashMap<>();
+
+    public static Order create(
+            UUID id,
+            UUID createdByUserId,
+            UUID customerId,
+            BigDecimal orderTotal,
+            OrderStatus status,
+            LocalDateTime orderDate
+    ) {
+
+        return new Order(
+                Id.create(id),
+                Id.create(createdByUserId),
+                Id.create(customerId),
+                orderTotal, status, orderDate
+        );
+    }
+
 
     private Order(
             Id id,
@@ -23,8 +43,7 @@ public class Order {
             Id customerId,
             BigDecimal orderTotal,
             OrderStatus status,
-            LocalDateTime orderDate,
-            Map<Id, OrderItem> orderItems
+            LocalDateTime orderDate
     ) {
         this.id = id;
         this.createdByUserId = createdByUserId;
@@ -32,7 +51,6 @@ public class Order {
         this.orderTotal = orderTotal;
         this.status = status;
         this.orderDate = orderDate;
-        this.orderItems = orderItems;
     }
 
     public Id getId() {
