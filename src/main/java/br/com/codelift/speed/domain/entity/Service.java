@@ -1,21 +1,21 @@
 package br.com.codelift.speed.domain.entity;
 
 import br.com.codelift.speed.domain.entity.enums.ServiceStatus;
+import br.com.codelift.speed.domain.vo.Id;
 import br.com.codelift.speed.exception.BusinessException;
 
 import java.math.BigDecimal;
-import java.util.UUID;
 
 public class Service {
 
-    private final UUID id;
+    private final Id id;
     private final String name;
     private final String description;
     private BigDecimal price;
     private final ServiceStatus status;
 
     public static Service create(
-            UUID id,
+            Id id,
             String name,
             String description,
             BigDecimal price,
@@ -58,7 +58,7 @@ public class Service {
     }
 
     private Service(
-            UUID id,
+            Id id,
             String name,
             String description,
             BigDecimal price,
@@ -71,7 +71,7 @@ public class Service {
         this.status = status;
     }
 
-    public UUID getId() {
+    public Id getId() {
         return id;
     }
 
