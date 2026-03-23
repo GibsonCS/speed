@@ -1,6 +1,5 @@
-package br.com.codelift.speed.domain;
+package br.com.codelift.speed.domain.entity;
 
-import br.com.codelift.speed.domain.entity.Customer;
 import br.com.codelift.speed.domain.vo.Address;
 import br.com.codelift.speed.domain.vo.Phone;
 import br.com.codelift.speed.exception.BusinessException;
@@ -20,7 +19,7 @@ class CustomerTest {
     private final Phone VALID_PHONENUMBER = Phone.create("(21)99654-4074");
     private final String VALID_EMAIL = "gibson@gibson.com";
     private final Address VALID_ADDRESS = Address.create("Street one", "nb01", "Rj", "26165445");
-    
+
     @Test
     void shouldThrowBusinessExceptionIfClientIdIsNull() {
 

@@ -1,6 +1,5 @@
-package br.com.codelift.speed.domain;
+package br.com.codelift.speed.domain.entity;
 
-import br.com.codelift.speed.domain.entity.User;
 import br.com.codelift.speed.domain.vo.Email;
 import br.com.codelift.speed.domain.vo.Name;
 import br.com.codelift.speed.exception.BusinessException;
