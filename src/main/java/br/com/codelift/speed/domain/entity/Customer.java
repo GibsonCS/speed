@@ -26,7 +26,6 @@ public class Customer {
             Phone phoneNumber,
             String email,
             Address address
-
     ) {
         validateCnpj(cnpj);
         validateCompanyName(companyName);
@@ -38,20 +37,25 @@ public class Customer {
                 phoneNumber,
                 Email.create(email),
                 address
-
         );
     }
 
     private static void validateCnpj(String cnpj) {
-        if (cnpj == null) throw new BusinessException("Insert a valid cnpj");
+        if (cnpj == null) {
+            throw new BusinessException("Insert a valid cnpj");
+        }
 
-        if (!cnpj.matches("^\\d{2}.\\d{3}.\\d{3}.\\d{4}-\\d{2}$")) {
+        String regex = "^\\d{2}.\\d{3}.\\d{3}.\\d{4}-\\d{2}$";
+
+        if (!cnpj.matches(regex)) {
             throw new BusinessException("Insert a valid cnpj");
         }
     }
 
     private static void validateCompanyName(String companyName) {
-        if (companyName == null) throw new BusinessException("Company name cannot be null");
+        if (companyName == null) {
+            throw new BusinessException("Company name cannot be null");
+        }
     }
 
     private Customer(
