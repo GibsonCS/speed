@@ -3,6 +3,7 @@ package br.com.codelift.speed.domain.entity;
 import br.com.codelift.speed.domain.entity.enums.OrderItemStatus;
 import br.com.codelift.speed.domain.entity.enums.OrderStatus;
 import br.com.codelift.speed.domain.vo.Address;
+import br.com.codelift.speed.exception.BusinessException;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -11,6 +12,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class OrderTest {
 
@@ -19,7 +21,7 @@ class OrderTest {
     UUID VALID_CUSTOMER_ID = UUID.randomUUID();
     BigDecimal VALID_ORDER_TOTAL = BigDecimal.valueOf(3890.90);
     OrderStatus VALID_ORDER_STATUS = OrderStatus.PENDING;
-    LocalDateTime VALID_ORDER_DATE = LocalDateTime.now();
+    LocalDateTime VALID_ORDER_DATE = LocalDateTime.now().plusDays(1);
     UUID _ID = UUID.randomUUID();
     UUID VALID_SERVICE_ID = UUID.fromString("918f1cce-bd74-4289-9220-4fa4cb6678b6");
     OrderItemStatus _STATUS = OrderItemStatus.PENDING;
@@ -51,5 +53,17 @@ class OrderTest {
         assertEquals(VALID_ORDER_STATUS, order.getStatus());
 
         System.out.println(order);
+    }
+
+    @Test
+    void shouldNotCreateOrderWithInvalidDate() {
+
+        assertThrows(BusinessException.class, () -> Order.create(VALID_ID,
+                VALID_CREATED_BY_USER_ID,
+                VALID_CUSTOMER_ID,
+                VALID_ORDER_TOTAL,
+                VALID_ORDER_STATUS,
+                LocalDateTime.now().minusDays(1)
+        ));
     }
 }
