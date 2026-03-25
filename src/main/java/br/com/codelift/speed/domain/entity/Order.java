@@ -65,6 +65,10 @@ public class Order {
         if (this.status.compareTo(OrderStatus.CANCELED) == 0) {
             throw new BusinessException("This order already been canceled");
         }
+
+        if ((this.status.compareTo(OrderStatus.PENDING) == 0) && (orderStatus.compareTo(OrderStatus.PAID)) == 0) {
+            throw new BusinessException("An pending order cannot be paid without confirmation");
+        }
     }
 
     public Id getId() {
