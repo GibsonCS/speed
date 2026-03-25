@@ -3,14 +3,14 @@ package br.com.codelift.speed.domain.entity;
 import br.com.codelift.speed.domain.entity.enums.OrderItemStatus;
 import br.com.codelift.speed.domain.entity.enums.OrderStatus;
 import br.com.codelift.speed.domain.vo.Address;
+import br.com.codelift.speed.exception.BusinessException;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.*;
 
 class OrderTest {
 
@@ -42,5 +42,17 @@ class OrderTest {
         assertEquals(VALID_CREATED_BY_USER_ID, order.getCreatedByUserId().getValue());
         assertEquals(VALID_CUSTOMER_ID, order.getCustomerId().getValue());
         assertSame(order.getStatus(), OrderStatus.PENDING);
+    }
+
+    @Test
+    void shouldNotCancelAPaidOrder() {
+        Order order = Order.create(
+                VALID_ID,
+                VALID_CREATED_BY_USER_ID,
+                VALID_CUSTOMER_ID
+        );
+
+        order.changeStatus(OrderStatus.PAID);
+        assertThrows(BusinessException.class, () -> order.changeStatus(OrderStatus.CANCELED));
     }
 }
