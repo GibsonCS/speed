@@ -11,15 +11,13 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 class OrderTest {
 
     UUID VALID_ID = UUID.randomUUID();
     UUID VALID_CREATED_BY_USER_ID = UUID.randomUUID();
     UUID VALID_CUSTOMER_ID = UUID.randomUUID();
-    OrderStatus VALID_ORDER_STATUS = OrderStatus.PENDING;
     LocalDateTime VALID_ORDER_DATE = LocalDateTime.now().plusDays(1);
     UUID _ID = UUID.randomUUID();
     UUID VALID_SERVICE_ID = UUID.fromString("918f1cce-bd74-4289-9220-4fa4cb6678b6");
@@ -40,25 +38,29 @@ class OrderTest {
                 VALID_ID,
                 VALID_CREATED_BY_USER_ID,
                 VALID_CUSTOMER_ID,
-                VALID_ORDER_STATUS,
                 VALID_ORDER_DATE
         );
 
         assertEquals(VALID_ID, order.getId().getValue());
         assertEquals(VALID_CREATED_BY_USER_ID, order.getCreatedByUserId().getValue());
         assertEquals(VALID_CUSTOMER_ID, order.getCustomerId().getValue());
-        assertEquals(VALID_ORDER_STATUS, order.getStatus());
-
-        System.out.println(order);
+        assertSame(order.getStatus(), OrderStatus.PENDING);
     }
 
     @Test
     void shouldNotCreateOrderWithInvalidDate() {
-
         assertThrows(BusinessException.class, () -> Order.create(VALID_ID,
                 VALID_CREATED_BY_USER_ID,
                 VALID_CUSTOMER_ID,
-                VALID_ORDER_STATUS,
+                LocalDateTime.now().minusDays(1)
+        ));
+    }
+
+    @Test
+    void shouldNotCreateOrderWithOrderTotalLessThan100() {
+        assertThrows(BusinessException.class, () -> Order.create(VALID_ID,
+                VALID_CREATED_BY_USER_ID,
+                VALID_CUSTOMER_ID,
                 LocalDateTime.now().minusDays(1)
         ));
     }
