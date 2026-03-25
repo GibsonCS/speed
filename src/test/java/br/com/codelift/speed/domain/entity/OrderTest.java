@@ -55,4 +55,16 @@ class OrderTest {
         order.changeStatus(OrderStatus.PAID);
         assertThrows(BusinessException.class, () -> order.changeStatus(OrderStatus.CANCELED));
     }
+
+    @Test
+    void shouldNotChangeOrderStatusAlreadyCanceled() {
+        Order order = Order.create(
+                VALID_ID,
+                VALID_CREATED_BY_USER_ID,
+                VALID_CUSTOMER_ID
+        );
+
+        order.changeStatus(OrderStatus.CANCELED);
+        assertThrows(BusinessException.class, () -> order.changeStatus(OrderStatus.PAID));
+    }
 }
