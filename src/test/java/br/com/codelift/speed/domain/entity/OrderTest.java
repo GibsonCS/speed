@@ -45,18 +45,6 @@ class OrderTest {
     }
 
     @Test
-    void shouldNotCancelAPaidOrder() {
-        Order order = Order.create(
-                VALID_ID,
-                VALID_CREATED_BY_USER_ID,
-                VALID_CUSTOMER_ID
-        );
-
-        order.changeStatus(OrderStatus.PAID);
-        assertThrows(BusinessException.class, () -> order.changeStatus(OrderStatus.CANCELED));
-    }
-
-    @Test
     void shouldNotChangeOrderStatusAlreadyCanceled() {
         Order order = Order.create(
                 VALID_ID,
@@ -66,5 +54,29 @@ class OrderTest {
 
         order.changeStatus(OrderStatus.CANCELED);
         assertThrows(BusinessException.class, () -> order.changeStatus(OrderStatus.PAID));
+    }
+
+    @Test
+    void shouldNotPaidAPendingOrder() {
+        Order order = Order.create(
+                VALID_ID,
+                VALID_CREATED_BY_USER_ID,
+                VALID_CUSTOMER_ID
+        );
+
+        assertThrows(BusinessException.class, () -> order.changeStatus(OrderStatus.PAID));
+    }
+
+    @Test
+    void shouldNotCancelAPaidOrder() {
+        Order order = Order.create(
+                VALID_ID,
+                VALID_CREATED_BY_USER_ID,
+                VALID_CUSTOMER_ID
+        );
+
+        order.changeStatus(OrderStatus.CONFIRMED);
+        order.changeStatus(OrderStatus.PAID);
+        assertThrows(BusinessException.class, () -> order.changeStatus(OrderStatus.CANCELED));
     }
 }
