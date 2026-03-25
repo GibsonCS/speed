@@ -24,29 +24,26 @@ public class Order {
             UUID id,
             UUID createdByUserId,
             UUID customerId,
-            BigDecimal orderTotal,
             OrderStatus status,
             LocalDateTime orderDate
     ) {
         validateOrderDate(orderDate);
-
+        
         return new Order(
                 Id.create(id),
                 Id.create(createdByUserId),
                 Id.create(customerId),
-                orderTotal,
+                BigDecimal.valueOf(0),
                 status,
                 orderDate
         );
     }
 
     private static void validateOrderDate(LocalDateTime orderDate) {
-        LocalDateTime localDateTime = LocalDateTime.now();
-        if (orderDate.isBefore(localDateTime)) {
+        if (orderDate.isBefore(LocalDateTime.now())) {
             throw new BusinessException("Invalid order date");
         }
     }
-
 
     private Order(
             Id id,
