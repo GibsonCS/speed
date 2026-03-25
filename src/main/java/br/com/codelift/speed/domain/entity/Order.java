@@ -50,7 +50,7 @@ public class Order {
         this.status = status;
         this.orderDate = orderDate;
     }
-    
+
     public void changeStatus(OrderStatus status) {
         validateStatus(status);
 
@@ -60,6 +60,10 @@ public class Order {
     private void validateStatus(OrderStatus orderStatus) {
         if ((this.status.compareTo(OrderStatus.PAID) == 0) && (orderStatus.compareTo(OrderStatus.CANCELED)) == 0) {
             throw new BusinessException("An paid order cannot be canceled");
+        }
+
+        if (this.status.compareTo(OrderStatus.CANCELED) == 0) {
+            throw new BusinessException("This order already been canceled");
         }
     }
 
