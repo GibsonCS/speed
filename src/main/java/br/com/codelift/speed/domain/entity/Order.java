@@ -39,7 +39,7 @@ public class Order {
         if (this.orderItems.isEmpty()) {
             throw new BusinessException("Cannot submit an empty order");
         }
-        this.status = OrderStatus.SUBMITTED;
+        this.status = OrderStatus.IN_ANALISE;
     }
 
     public void addItem(OrderItem orderItem) {
