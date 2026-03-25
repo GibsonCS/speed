@@ -24,17 +24,16 @@ public class Order {
             UUID id,
             UUID createdByUserId,
             UUID customerId,
-            OrderStatus status,
             LocalDateTime orderDate
     ) {
         validateOrderDate(orderDate);
-        
+
         return new Order(
                 Id.create(id),
                 Id.create(createdByUserId),
                 Id.create(customerId),
                 BigDecimal.valueOf(0),
-                status,
+                OrderStatus.PENDING,
                 orderDate
         );
     }
@@ -44,7 +43,7 @@ public class Order {
             throw new BusinessException("Invalid order date");
         }
     }
-
+    
     private Order(
             Id id,
             Id createdByUserId,
