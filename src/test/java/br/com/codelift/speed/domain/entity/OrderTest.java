@@ -19,7 +19,6 @@ class OrderTest {
     UUID VALID_ID = UUID.randomUUID();
     UUID VALID_CREATED_BY_USER_ID = UUID.randomUUID();
     UUID VALID_CUSTOMER_ID = UUID.randomUUID();
-    BigDecimal VALID_ORDER_TOTAL = BigDecimal.valueOf(3890.90);
     OrderStatus VALID_ORDER_STATUS = OrderStatus.PENDING;
     LocalDateTime VALID_ORDER_DATE = LocalDateTime.now().plusDays(1);
     UUID _ID = UUID.randomUUID();
@@ -41,7 +40,6 @@ class OrderTest {
                 VALID_ID,
                 VALID_CREATED_BY_USER_ID,
                 VALID_CUSTOMER_ID,
-                VALID_ORDER_TOTAL,
                 VALID_ORDER_STATUS,
                 VALID_ORDER_DATE
         );
@@ -49,7 +47,6 @@ class OrderTest {
         assertEquals(VALID_ID, order.getId().getValue());
         assertEquals(VALID_CREATED_BY_USER_ID, order.getCreatedByUserId().getValue());
         assertEquals(VALID_CUSTOMER_ID, order.getCustomerId().getValue());
-        assertEquals(VALID_ORDER_TOTAL, order.getOrderTotal());
         assertEquals(VALID_ORDER_STATUS, order.getStatus());
 
         System.out.println(order);
@@ -61,7 +58,6 @@ class OrderTest {
         assertThrows(BusinessException.class, () -> Order.create(VALID_ID,
                 VALID_CREATED_BY_USER_ID,
                 VALID_CUSTOMER_ID,
-                VALID_ORDER_TOTAL,
                 VALID_ORDER_STATUS,
                 LocalDateTime.now().minusDays(1)
         ));
