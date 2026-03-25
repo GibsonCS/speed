@@ -2,6 +2,7 @@ package br.com.codelift.speed.domain.entity;
 
 import br.com.codelift.speed.domain.entity.enums.OrderStatus;
 import br.com.codelift.speed.domain.vo.Id;
+import br.com.codelift.speed.exception.BusinessException;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -27,13 +28,23 @@ public class Order {
             OrderStatus status,
             LocalDateTime orderDate
     ) {
+        validateOrderDate(orderDate);
 
         return new Order(
                 Id.create(id),
                 Id.create(createdByUserId),
                 Id.create(customerId),
-                orderTotal, status, orderDate
+                orderTotal,
+                status,
+                orderDate
         );
+    }
+
+    private static void validateOrderDate(LocalDateTime orderDate) {
+        LocalDateTime localDateTime = LocalDateTime.now();
+        if (orderDate.isBefore(localDateTime)) {
+            throw new BusinessException("Invalid order date");
+        }
     }
 
 
