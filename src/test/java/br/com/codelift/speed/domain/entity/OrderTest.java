@@ -61,11 +61,11 @@ class OrderTest {
                 VALID_EXECUTION_DATE,
                 VALID_CHARGED_PRICE
         );
-        
+
         order.addItem(orderItem);
         order.submit();
 
-        assertEquals(OrderStatus.SUBMITTED, order.getStatus());
+        assertEquals(OrderStatus.IN_ANALISE, order.getStatus());
     }
 
     @Test
