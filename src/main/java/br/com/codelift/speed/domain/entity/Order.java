@@ -2,6 +2,7 @@ package br.com.codelift.speed.domain.entity;
 
 import br.com.codelift.speed.domain.entity.enums.OrderStatus;
 import br.com.codelift.speed.domain.vo.Id;
+import br.com.codelift.speed.exception.BusinessException;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -35,7 +36,14 @@ public class Order {
     }
 
     public void submit() {
+        if (this.orderItems.isEmpty()) {
+            throw new BusinessException("Cannot submit an empty order");
+        }
         this.status = OrderStatus.SUBMITTED;
+    }
+
+    public void addItem(OrderItem orderItem) {
+        this.orderItems.put(orderItem.getId(), orderItem);
     }
 
     private Order(
