@@ -10,8 +10,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 class OrderTest {
 
@@ -77,5 +76,27 @@ class OrderTest {
         );
 
         assertThrows(BusinessException.class, order::submit);
+    }
+
+    @Test
+    void shouldAddANewItem() {
+        Order order = Order.create(
+                VALID_ID,
+                VALID_CREATED_BY_USER_ID,
+                VALID_CUSTOMER_ID
+        );
+
+        OrderItem orderItem = OrderItem.create(
+                VALID_ID,
+                VALID_SERVICE_ID,
+                VALID_EXECUTION_ADDRESS,
+                VALID_ORDER_ITEM_STATUS,
+                VALID_EXECUTION_DATE,
+                VALID_CHARGED_PRICE
+        );
+
+        order.addItem(orderItem);
+
+        assertTrue(order.getOrderItems().containsKey(orderItem.getId()));
     }
 }
