@@ -3,6 +3,7 @@ package br.com.codelift.speed.domain.entity;
 import br.com.codelift.speed.domain.entity.enums.OrderItemStatus;
 import br.com.codelift.speed.domain.entity.enums.OrderStatus;
 import br.com.codelift.speed.domain.vo.Address;
+import br.com.codelift.speed.exception.BusinessException;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -10,6 +11,7 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class OrderTest {
 
@@ -18,7 +20,7 @@ class OrderTest {
     UUID VALID_CUSTOMER_ID = UUID.randomUUID();
     UUID _ID = UUID.randomUUID();
     UUID VALID_SERVICE_ID = UUID.fromString("918f1cce-bd74-4289-9220-4fa4cb6678b6");
-    OrderItemStatus _STATUS = OrderItemStatus.PENDING;
+    OrderItemStatus VALID_ORDER_ITEM_STATUS = OrderItemStatus.PENDING;
     LocalDate VALID_EXECUTION_DATE = LocalDate.of(2526, 12, 5);
     BigDecimal VALID_CHARGED_PRICE = BigDecimal.valueOf(5000.90);
 
@@ -51,8 +53,29 @@ class OrderTest {
                 VALID_CUSTOMER_ID
         );
 
+        OrderItem orderItem = OrderItem.create(
+                VALID_ID,
+                VALID_SERVICE_ID,
+                VALID_EXECUTION_ADDRESS,
+                VALID_ORDER_ITEM_STATUS,
+                VALID_EXECUTION_DATE,
+                VALID_CHARGED_PRICE
+        );
+        
+        order.addItem(orderItem);
         order.submit();
 
         assertEquals(OrderStatus.SUBMITTED, order.getStatus());
+    }
+
+    @Test
+    void shouldNotSubmitAnEmptyOrder() {
+        Order order = Order.create(
+                VALID_ID,
+                VALID_CREATED_BY_USER_ID,
+                VALID_CUSTOMER_ID
+        );
+
+        assertThrows(BusinessException.class, order::submit);
     }
 }
