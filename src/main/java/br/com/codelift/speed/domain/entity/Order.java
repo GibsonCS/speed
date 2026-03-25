@@ -2,6 +2,7 @@ package br.com.codelift.speed.domain.entity;
 
 import br.com.codelift.speed.domain.entity.enums.OrderStatus;
 import br.com.codelift.speed.domain.vo.Id;
+import br.com.codelift.speed.exception.BusinessException;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -33,7 +34,7 @@ public class Order {
                 LocalDateTime.now()
         );
     }
-    
+
     private Order(
             Id id,
             Id createdByUserId,
@@ -48,6 +49,18 @@ public class Order {
         this.orderTotal = orderTotal;
         this.status = status;
         this.orderDate = orderDate;
+    }
+    
+    public void changeStatus(OrderStatus status) {
+        validateStatus(status);
+
+        this.status = status;
+    }
+
+    private void validateStatus(OrderStatus orderStatus) {
+        if ((this.status.compareTo(OrderStatus.PAID) == 0) && (orderStatus.compareTo(OrderStatus.CANCELED)) == 0) {
+            throw new BusinessException("An paid order cannot be canceled");
+        }
     }
 
     public Id getId() {
