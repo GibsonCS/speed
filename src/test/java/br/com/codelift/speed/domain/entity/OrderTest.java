@@ -145,5 +145,11 @@ class OrderTest {
         assertThrows(BusinessException.class, order::cancel);
     }
 
+    @Test
+    void shouldConfirmAnOrder() {
+        
+        order.confirm();
 
+        assertEquals(OrderStatus.CONFIRMED, order.getStatus());
+    }
 }
