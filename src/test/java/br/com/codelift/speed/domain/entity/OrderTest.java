@@ -118,7 +118,29 @@ class OrderTest {
         );
 
         order.addItem(orderItem);
-        
+
+        assertThrows(BusinessException.class, () -> order.addItem(orderItem));
+    }
+
+    @Test
+    void shouldNotAddItemInACanceledOrder() {
+        Order order = Order.create(
+                VALID_ID,
+                VALID_CREATED_BY_USER_ID,
+                VALID_CUSTOMER_ID
+        );
+
+        OrderItem orderItem = OrderItem.create(
+                VALID_ID,
+                VALID_SERVICE_ID,
+                VALID_EXECUTION_ADDRESS,
+                VALID_ORDER_ITEM_STATUS,
+                VALID_EXECUTION_DATE,
+                VALID_CHARGED_PRICE
+        );
+
+        order.cancel();
+
         assertThrows(BusinessException.class, () -> order.addItem(orderItem));
     }
 }
