@@ -52,6 +52,10 @@ public class Order {
         this.status = OrderStatus.PAID;
     }
 
+    public void confirm() {
+        this.status = OrderStatus.CONFIRMED;
+    }
+
     public void analyze() {
         this.status = OrderStatus.IN_ANALISE;
     }
