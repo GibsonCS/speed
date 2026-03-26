@@ -41,7 +41,19 @@ public class Order {
             throw new BusinessException("Order has already been paid");
         }
 
+        if (this.status == OrderStatus.CANCELED) {
+            throw new BusinessException("Order has already been canceled");
+        }
+
+        if (this.status == OrderStatus.IN_ANALISE) {
+            throw new BusinessException("Cannot pay for an order that is under review. Wait the order confirmation");
+        }
+
         this.status = OrderStatus.PAID;
+    }
+
+    public void analyze() {
+        this.status = OrderStatus.IN_ANALISE;
     }
 
     public void submit() {
