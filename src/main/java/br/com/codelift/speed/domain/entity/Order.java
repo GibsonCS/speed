@@ -35,6 +35,10 @@ public class Order {
         );
     }
 
+    public void pay() {
+        this.status = OrderStatus.PAID;
+    }
+
     public void submit() {
 
         if (this.orderItems.isEmpty()) {
