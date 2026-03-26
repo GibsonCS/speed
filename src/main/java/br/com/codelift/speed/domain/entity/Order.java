@@ -36,6 +36,11 @@ public class Order {
     }
 
     public void pay() {
+
+        if (this.status == OrderStatus.PAID) {
+            throw new BusinessException("Order has already been paid");
+        }
+
         this.status = OrderStatus.PAID;
     }
 
