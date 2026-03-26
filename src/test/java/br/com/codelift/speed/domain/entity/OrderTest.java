@@ -147,9 +147,17 @@ class OrderTest {
 
     @Test
     void shouldConfirmAnOrder() {
-        
+
         order.confirm();
 
         assertEquals(OrderStatus.CONFIRMED, order.getStatus());
+    }
+
+    @Test
+    void shouldNotToConfirmAnOrderThatHasAlreadyConfirmed() {
+
+        order.confirm();
+
+        assertThrows(BusinessException.class, order::confirm);
     }
 }
