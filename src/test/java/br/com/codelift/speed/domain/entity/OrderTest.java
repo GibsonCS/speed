@@ -156,4 +156,17 @@ class OrderTest {
 
         assertEquals(OrderStatus.PAID, order.getStatus());
     }
+
+    @Test
+    void shouldNotPayAnOrderThatHasAlreadyBeenPaid() {
+        Order order = Order.create(
+                VALID_ID,
+                VALID_CREATED_BY_USER_ID,
+                VALID_CUSTOMER_ID
+        );
+
+        order.pay();
+
+        assertThrows(BusinessException.class, order::pay);
+    }
 }
