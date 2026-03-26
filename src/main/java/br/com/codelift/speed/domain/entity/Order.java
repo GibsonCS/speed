@@ -79,6 +79,11 @@ public class Order {
     }
 
     public void cancel() {
+
+        if (this.status == OrderStatus.CANCELED) {
+            throw new BusinessException("Cannot cancel an order that is canceled");
+        }
+
         this.status = OrderStatus.CANCELED;
     }
 
