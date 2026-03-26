@@ -99,4 +99,26 @@ class OrderTest {
 
         assertTrue(order.getOrderItems().containsKey(orderItem.getId()));
     }
+
+    @Test
+    void shouldNotAddDuplicatedItem() {
+        Order order = Order.create(
+                VALID_ID,
+                VALID_CREATED_BY_USER_ID,
+                VALID_CUSTOMER_ID
+        );
+
+        OrderItem orderItem = OrderItem.create(
+                VALID_ID,
+                VALID_SERVICE_ID,
+                VALID_EXECUTION_ADDRESS,
+                VALID_ORDER_ITEM_STATUS,
+                VALID_EXECUTION_DATE,
+                VALID_CHARGED_PRICE
+        );
+
+        order.addItem(orderItem);
+        
+        assertThrows(BusinessException.class, () -> order.addItem(orderItem));
+    }
 }
