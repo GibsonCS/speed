@@ -32,6 +32,7 @@ class OrderTest {
     );
 
     Order order;
+    OrderItem orderItem;
 
     @BeforeEach
     void setup() {
@@ -39,6 +40,15 @@ class OrderTest {
                 VALID_ID,
                 VALID_CREATED_BY_USER_ID,
                 VALID_CUSTOMER_ID
+        );
+
+        orderItem = OrderItem.create(
+                VALID_ID,
+                VALID_SERVICE_ID,
+                VALID_EXECUTION_ADDRESS,
+                VALID_ORDER_ITEM_STATUS,
+                VALID_EXECUTION_DATE,
+                VALID_CHARGED_PRICE
         );
     }
 
@@ -52,14 +62,6 @@ class OrderTest {
 
     @Test
     void shouldSubmittedAnOrder() {
-        OrderItem orderItem = OrderItem.create(
-                VALID_ID,
-                VALID_SERVICE_ID,
-                VALID_EXECUTION_ADDRESS,
-                VALID_ORDER_ITEM_STATUS,
-                VALID_EXECUTION_DATE,
-                VALID_CHARGED_PRICE
-        );
 
         order.addItem(orderItem);
         order.submit();
@@ -74,14 +76,6 @@ class OrderTest {
 
     @Test
     void shouldAddANewItem() {
-        OrderItem orderItem = OrderItem.create(
-                VALID_ID,
-                VALID_SERVICE_ID,
-                VALID_EXECUTION_ADDRESS,
-                VALID_ORDER_ITEM_STATUS,
-                VALID_EXECUTION_DATE,
-                VALID_CHARGED_PRICE
-        );
 
         order.addItem(orderItem);
 
@@ -90,14 +84,6 @@ class OrderTest {
 
     @Test
     void shouldNotAddDuplicatedItem() {
-        OrderItem orderItem = OrderItem.create(
-                VALID_ID,
-                VALID_SERVICE_ID,
-                VALID_EXECUTION_ADDRESS,
-                VALID_ORDER_ITEM_STATUS,
-                VALID_EXECUTION_DATE,
-                VALID_CHARGED_PRICE
-        );
 
         order.addItem(orderItem);
 
@@ -106,14 +92,6 @@ class OrderTest {
 
     @Test
     void shouldNotAddItemInACanceledOrder() {
-        OrderItem orderItem = OrderItem.create(
-                VALID_ID,
-                VALID_SERVICE_ID,
-                VALID_EXECUTION_ADDRESS,
-                VALID_ORDER_ITEM_STATUS,
-                VALID_EXECUTION_DATE,
-                VALID_CHARGED_PRICE
-        );
 
         order.cancel();
 
@@ -132,7 +110,7 @@ class OrderTest {
     void shouldNotPayAnOrderThatHasAlreadyBeenPaid() {
 
         order.pay();
-        
+
         assertThrows(BusinessException.class, order::pay);
     }
 }
