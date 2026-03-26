@@ -36,6 +36,7 @@ public class Order {
     }
 
     public void submit() {
+
         if (this.orderItems.isEmpty()) {
             throw new BusinessException("Cannot submit an empty order");
         }
@@ -44,11 +45,20 @@ public class Order {
     }
 
     public void addItem(OrderItem orderItem) {
+
         if (this.orderItems.containsKey(orderItem.getId())) {
             throw new BusinessException("Item has already been added");
         }
 
+        if (this.status == OrderStatus.CANCELED) {
+            throw new BusinessException("Cannot add item in a canceled order");
+        }
+
         this.orderItems.put(orderItem.getId(), orderItem);
+    }
+
+    public void cancel() {
+        this.status = OrderStatus.CANCELED;
     }
 
     private Order(
