@@ -18,7 +18,7 @@ public class Order {
     private final LocalDateTime orderDate;
     private BigDecimal orderTotal;
     private OrderStatus status;
-    private Map<Id, OrderItem> orderItems = new HashMap<>();
+    private final Map<Id, OrderItem> orderItems = new HashMap<>();
 
     public static Order create(
             UUID id,
@@ -39,10 +39,15 @@ public class Order {
         if (this.orderItems.isEmpty()) {
             throw new BusinessException("Cannot submit an empty order");
         }
+
         this.status = OrderStatus.IN_ANALISE;
     }
 
     public void addItem(OrderItem orderItem) {
+        if (this.orderItems.containsKey(orderItem.getId())) {
+            throw new BusinessException("Item has already been added");
+        }
+
         this.orderItems.put(orderItem.getId(), orderItem);
     }
 
