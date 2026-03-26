@@ -136,4 +136,14 @@ class OrderTest {
 
         assertEquals(OrderStatus.CANCELED, order.getStatus());
     }
+
+    @Test
+    void shouldNotCancelAnOrderThatIsCanceled() {
+
+        order.cancel();
+
+        assertThrows(BusinessException.class, order::cancel);
+    }
+
+
 }
