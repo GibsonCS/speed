@@ -143,4 +143,17 @@ class OrderTest {
 
         assertThrows(BusinessException.class, () -> order.addItem(orderItem));
     }
+
+    @Test
+    void shouldPayAnOrder() {
+        Order order = Order.create(
+                VALID_ID,
+                VALID_CREATED_BY_USER_ID,
+                VALID_CUSTOMER_ID
+        );
+
+        order.pay();
+
+        assertEquals(OrderStatus.PAID, order.getStatus());
+    }
 }
