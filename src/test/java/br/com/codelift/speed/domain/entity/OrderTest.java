@@ -4,6 +4,7 @@ import br.com.codelift.speed.domain.entity.enums.OrderItemStatus;
 import br.com.codelift.speed.domain.entity.enums.OrderStatus;
 import br.com.codelift.speed.domain.vo.Address;
 import br.com.codelift.speed.exception.BusinessException;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -30,14 +31,19 @@ class OrderTest {
             "21532-000"
     );
 
-    @Test
-    void shouldCreateAValidOrder() {
-        Order order = Order.create(
+    Order order;
+
+    @BeforeEach
+    void setup() {
+        order = Order.create(
                 VALID_ID,
                 VALID_CREATED_BY_USER_ID,
                 VALID_CUSTOMER_ID
         );
+    }
 
+    @Test
+    void shouldCreateAValidOrder() {
         assertEquals(VALID_ID, order.getId().getValue());
         assertEquals(VALID_CREATED_BY_USER_ID, order.getCreatedByUserId().getValue());
         assertEquals(VALID_CUSTOMER_ID, order.getCustomerId().getValue());
@@ -46,12 +52,6 @@ class OrderTest {
 
     @Test
     void shouldSubmittedAnOrder() {
-        Order order = Order.create(
-                VALID_ID,
-                VALID_CREATED_BY_USER_ID,
-                VALID_CUSTOMER_ID
-        );
-
         OrderItem orderItem = OrderItem.create(
                 VALID_ID,
                 VALID_SERVICE_ID,
@@ -69,23 +69,11 @@ class OrderTest {
 
     @Test
     void shouldNotSubmitAnEmptyOrder() {
-        Order order = Order.create(
-                VALID_ID,
-                VALID_CREATED_BY_USER_ID,
-                VALID_CUSTOMER_ID
-        );
-
         assertThrows(BusinessException.class, order::submit);
     }
 
     @Test
     void shouldAddANewItem() {
-        Order order = Order.create(
-                VALID_ID,
-                VALID_CREATED_BY_USER_ID,
-                VALID_CUSTOMER_ID
-        );
-
         OrderItem orderItem = OrderItem.create(
                 VALID_ID,
                 VALID_SERVICE_ID,
@@ -102,12 +90,6 @@ class OrderTest {
 
     @Test
     void shouldNotAddDuplicatedItem() {
-        Order order = Order.create(
-                VALID_ID,
-                VALID_CREATED_BY_USER_ID,
-                VALID_CUSTOMER_ID
-        );
-
         OrderItem orderItem = OrderItem.create(
                 VALID_ID,
                 VALID_SERVICE_ID,
@@ -124,12 +106,6 @@ class OrderTest {
 
     @Test
     void shouldNotAddItemInACanceledOrder() {
-        Order order = Order.create(
-                VALID_ID,
-                VALID_CREATED_BY_USER_ID,
-                VALID_CUSTOMER_ID
-        );
-
         OrderItem orderItem = OrderItem.create(
                 VALID_ID,
                 VALID_SERVICE_ID,
@@ -146,11 +122,6 @@ class OrderTest {
 
     @Test
     void shouldPayAnOrder() {
-        Order order = Order.create(
-                VALID_ID,
-                VALID_CREATED_BY_USER_ID,
-                VALID_CUSTOMER_ID
-        );
 
         order.pay();
 
@@ -159,14 +130,9 @@ class OrderTest {
 
     @Test
     void shouldNotPayAnOrderThatHasAlreadyBeenPaid() {
-        Order order = Order.create(
-                VALID_ID,
-                VALID_CREATED_BY_USER_ID,
-                VALID_CUSTOMER_ID
-        );
 
         order.pay();
-
+        
         assertThrows(BusinessException.class, order::pay);
     }
 }
