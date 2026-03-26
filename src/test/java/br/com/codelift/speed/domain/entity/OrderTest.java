@@ -113,4 +113,20 @@ class OrderTest {
 
         assertThrows(BusinessException.class, order::pay);
     }
+
+    @Test
+    void shouldNotPayAnOrderThatHasAlreadyCanceled() {
+
+        order.cancel();
+
+        assertThrows(BusinessException.class, order::pay);
+    }
+
+    @Test
+    void shouldNotPayForAnOrderThatIsUnderReview() {
+
+        order.analyze();
+
+        assertThrows(BusinessException.class, order::pay);
+    }
 }
