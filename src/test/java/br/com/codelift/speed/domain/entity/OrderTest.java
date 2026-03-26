@@ -129,4 +129,11 @@ class OrderTest {
 
         assertThrows(BusinessException.class, order::pay);
     }
+
+    @Test
+    void shouldCancelAnOrder() {
+        order.cancel();
+
+        assertEquals(OrderStatus.CANCELED, order.getStatus());
+    }
 }
