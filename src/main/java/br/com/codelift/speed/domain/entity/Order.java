@@ -53,6 +53,9 @@ public class Order {
     }
 
     public void confirm() {
+        if (this.status == OrderStatus.CONFIRMED) {
+            throw new BusinessException("Order has already been confirmed");
+        }
         this.status = OrderStatus.CONFIRMED;
     }
 
