@@ -1,6 +1,7 @@
 package br.com.codelift.speed.domain.entity;
 
 import br.com.codelift.speed.domain.vo.Email;
+import br.com.codelift.speed.domain.vo.Id;
 import br.com.codelift.speed.domain.vo.Name;
 import br.com.codelift.speed.exception.BusinessException;
 
@@ -9,7 +10,7 @@ import java.util.UUID;
 
 public class User {
 
-    private final UUID id;
+    private final Id id;
     private final Name name;
     private final Name lastname;
     private final Email email;
@@ -26,7 +27,14 @@ public class User {
     ) {
         validatePassword(password);
 
-        return new User(id, name, lastname, email, password, roleIds);
+        return new User(
+                Id.create(id),
+                name,
+                lastname,
+                email,
+                password,
+                roleIds
+        );
     }
 
 
@@ -48,7 +56,7 @@ public class User {
     }
 
     private User(
-            UUID id,
+            Id id,
             Name name,
             Name lastname,
             Email email,
@@ -63,7 +71,7 @@ public class User {
         this.roleIds = roleIds;
     }
 
-    public UUID getId() {
+    public Id getId() {
         return id;
     }
 
