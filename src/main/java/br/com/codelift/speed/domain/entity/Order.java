@@ -118,6 +118,10 @@ public class Order {
             throw new BusinessException("Cannot reject a canceled order");
         }
 
+        if (this.status == OrderStatus.CONFIRMED) {
+            throw new BusinessException("Cannot reject a confirmed order");
+        }
+
         this.status = OrderStatus.REJECTED;
     }
 
