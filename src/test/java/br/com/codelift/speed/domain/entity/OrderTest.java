@@ -212,4 +212,14 @@ class OrderTest {
 
         assertThrows(BusinessException.class, order::reject);
     }
+
+    @Test
+    void shouldNotRejectAConfirmedOrder() {
+
+        order.addItem(orderItem);
+
+        order.confirm();
+
+        assertThrows(BusinessException.class, order::reject);
+    }
 }
