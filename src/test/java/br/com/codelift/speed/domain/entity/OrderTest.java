@@ -196,4 +196,20 @@ class OrderTest {
 
         assertEquals(OrderStatus.REJECTED, order.getStatus());
     }
+
+    @Test
+    void shouldNotRejectAPaidOrder() {
+
+        order.pay();
+
+        assertThrows(BusinessException.class, order::reject);
+    }
+
+    @Test
+    void shouldNotRejectACanceledOrder() {
+
+        order.cancel();
+
+        assertThrows(BusinessException.class, order::reject);
+    }
 }
