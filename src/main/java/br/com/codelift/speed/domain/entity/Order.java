@@ -82,6 +82,10 @@ public class Order {
             throw new BusinessException("Cannot add item in a canceled order");
         }
 
+        if (this.status == OrderStatus.CONFIRMED) {
+            throw new BusinessException("Cannot add item in a confirmed order");
+        }
+
         this.orderItems.put(orderItem.getId(), orderItem);
     }
 
