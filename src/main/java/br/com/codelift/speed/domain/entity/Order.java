@@ -53,9 +53,15 @@ public class Order {
     }
 
     public void confirm() {
+
         if (this.status == OrderStatus.CONFIRMED) {
             throw new BusinessException("Order has already been confirmed");
         }
+
+        if (this.getOrderItems().isEmpty()) {
+            throw new BusinessException("Cannot confirm order without items");
+        }
+
         this.status = OrderStatus.CONFIRMED;
     }
 
@@ -84,6 +90,10 @@ public class Order {
 
         if (this.status == OrderStatus.CONFIRMED) {
             throw new BusinessException("Cannot add item in a confirmed order");
+        }
+
+        if (this.status == OrderStatus.PAID) {
+            throw new BusinessException("Cannot add item in an paid order");
         }
 
         this.orderItems.put(orderItem.getId(), orderItem);
