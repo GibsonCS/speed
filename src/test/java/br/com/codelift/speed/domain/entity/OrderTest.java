@@ -148,6 +148,8 @@ class OrderTest {
     @Test
     void shouldConfirmAnOrder() {
 
+        order.addItem(orderItem);
+
         order.confirm();
 
         assertEquals(OrderStatus.CONFIRMED, order.getStatus());
@@ -156,6 +158,8 @@ class OrderTest {
     @Test
     void shouldNotToConfirmAnOrderThatHasAlreadyConfirmed() {
 
+        order.addItem(orderItem);
+
         order.confirm();
 
         assertThrows(BusinessException.class, order::confirm);
@@ -163,8 +167,24 @@ class OrderTest {
 
     @Test
     void shouldNotAddItemInAnOrderHasAlreadyConfirmed() {
-        
+
+        order.addItem(orderItem);
+
         order.confirm();
+
+        assertThrows(BusinessException.class, () -> order.addItem(orderItem));
+    }
+
+    @Test
+    void shouldNotConfirmOrderWithoutItems() {
+
+        assertThrows(BusinessException.class, order::confirm);
+    }
+
+    @Test
+    void shouldNotAddItemInAPaidOrder() {
+
+        order.pay();
 
         assertThrows(BusinessException.class, () -> order.addItem(orderItem));
     }
