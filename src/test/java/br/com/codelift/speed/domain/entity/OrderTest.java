@@ -160,4 +160,12 @@ class OrderTest {
 
         assertThrows(BusinessException.class, order::confirm);
     }
+
+    @Test
+    void shouldNotAddItemInAnOrderHasAlreadyConfirmed() {
+        
+        order.confirm();
+
+        assertThrows(BusinessException.class, () -> order.addItem(orderItem));
+    }
 }
