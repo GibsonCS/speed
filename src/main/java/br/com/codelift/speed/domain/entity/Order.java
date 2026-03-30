@@ -108,6 +108,10 @@ public class Order {
         this.status = OrderStatus.CANCELED;
     }
 
+    public void reject() {
+        this.status = OrderStatus.REJECTED;
+    }
+
     private Order(
             Id id,
             Id createdByUserId,
