@@ -109,6 +109,15 @@ public class Order {
     }
 
     public void reject() {
+
+        if (this.status == OrderStatus.PAID) {
+            throw new BusinessException("Cannot reject a paid order");
+        }
+
+        if (this.status == OrderStatus.CANCELED) {
+            throw new BusinessException("Cannot reject a canceled order");
+        }
+
         this.status = OrderStatus.REJECTED;
     }
 
