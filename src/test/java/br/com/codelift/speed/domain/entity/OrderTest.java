@@ -188,4 +188,12 @@ class OrderTest {
 
         assertThrows(BusinessException.class, () -> order.addItem(orderItem));
     }
+
+    @Test
+    void shouldRejectAnOrder() {
+
+        order.reject();
+
+        assertEquals(OrderStatus.REJECTED, order.getStatus());
+    }
 }
