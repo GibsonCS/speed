@@ -48,10 +48,10 @@ public class User {
     }
 
     public void addRole(UUID roleId) {
-        if (roleIds.contains(roleId)) {
+        if (this.roleIds.contains(roleId)) {
             throw new BusinessException("Role already exists");
         }
-        roleIds.add(roleId);
+        this.roleIds.add(roleId);
     }
 
     private User(
