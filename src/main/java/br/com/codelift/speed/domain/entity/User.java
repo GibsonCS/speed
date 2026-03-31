@@ -37,7 +37,6 @@ public class User {
         );
     }
 
-
     private static void validatePassword(String password) {
         if (password == null || password.isBlank()) {
             throw new BusinessException("password cannot be empty");

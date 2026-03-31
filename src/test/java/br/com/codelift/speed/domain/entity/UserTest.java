@@ -9,8 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 class UserTest {
 
@@ -177,5 +176,22 @@ class UserTest {
         assertEquals(VALID_NAME, user.getName());
         assertEquals(VALID_LASTNAME, user.getLastname());
         assertEquals(Email.create(VALID_EMAIL), user.getEmail());
+    }
+
+    @Test
+    void shouldAddRole() {
+
+        User user = User.create(
+                VALID_ID,
+                VALID_NAME,
+                VALID_LASTNAME,
+                Email.create(VALID_EMAIL),
+                VALID_PASSWORD,
+                VALID_ROLEIDS
+        );
+
+        user.addRole(VALID_ID);
+
+        assertTrue(user.getRoleIds().contains(VALID_ID));
     }
 }
