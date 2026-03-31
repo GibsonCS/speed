@@ -194,4 +194,23 @@ class UserTest {
 
         assertTrue(user.getRoleIds().contains(VALID_ID));
     }
+
+    @Test
+    void shouldNotAddRoleThatHasAlreadyExists() {
+
+        User user = User.create(
+                VALID_ID,
+                VALID_NAME,
+                VALID_LASTNAME,
+                Email.create(VALID_EMAIL),
+                VALID_PASSWORD,
+                VALID_ROLEIDS
+        );
+
+        user.addRole(UUID.fromString("4859cafd-f302-4f9e-9efb-58d77761d097"));
+
+        assertThrows(BusinessException.class, () -> user.addRole(UUID.fromString(
+                "4859cafd-f302-4f9e-9efb-58d77761d097"
+        )));
+    }
 }
