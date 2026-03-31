@@ -173,6 +173,7 @@ class UserTest {
                 VALID_ROLEIDS
         );
 
+        assertEquals(VALID_ID, user.getId().getValue());
         assertEquals(VALID_NAME, user.getName());
         assertEquals(VALID_LASTNAME, user.getLastname());
         assertEquals(Email.create(VALID_EMAIL), user.getEmail());
