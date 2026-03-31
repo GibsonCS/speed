@@ -1,18 +1,18 @@
-# API - Speed service
+# 📚 API - Speed Service
 
-## Functional Requirements (FR)
+## 📌 Requisitos Funcionais (RF)
 
-- Must allow user creation
-- Must allow user deletion
-- Must allow retrieving a user
-- Must allow elevating user privileges
-- Must allow updating a user
+- Deve permitir a criação de usuário  
+- Deve permitir a exclusão de usuário  
+- Deve permitir a busca de um usuário  
+- Deve permitir elevar o privilégio do usuário  
+- Deve permitir a atualização de um usuário  
 
 ---
 
-## Endpoints:
+## 🌐 Endpoints:
 
-### Create User
+### ➕ Criar Usuário
 
 **Request**  
 POST /users
@@ -32,7 +32,7 @@ POST /users
 
 ---
 
-### Get User
+### 🔍 Buscar Usuário
 
 **Request**  
 GET /users/{id}
@@ -48,7 +48,7 @@ GET /users/{id}
 
 ---
 
-### Update User
+### ✏️ Atualizar Usuário
 
 **Request**  
 PUT /users/{id}
@@ -67,7 +67,7 @@ PUT /users/{id}
 
 ---
 
-### Delete User
+### ❌ Deletar Usuário
 
 **Request**  
 DELETE /users/{id}
@@ -77,7 +77,7 @@ DELETE /users/{id}
 
 ---
 
-### Add Role to User
+### 🔐 Adicionar Role ao Usuário
 
 **Request**  
 PUT /users/{id}/roles
