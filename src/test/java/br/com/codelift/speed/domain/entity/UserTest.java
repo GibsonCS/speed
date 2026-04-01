@@ -1,7 +1,6 @@
 package br.com.codelift.speed.domain.entity;
 
 import br.com.codelift.speed.domain.vo.Email;
-import br.com.codelift.speed.domain.vo.Name;
 import br.com.codelift.speed.exception.BusinessException;
 import org.junit.jupiter.api.Test;
 
@@ -12,8 +11,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class UserTest {
 
     private final UUID VALID_ID = UUID.randomUUID();
-    private final Name VALID_NAME = Name.create("Gibson");
-    private final Name VALID_LASTNAME = Name.create("Silva");
+    private final String VALID_NAME = "Gibson";
+    private final String VALID_LASTNAME = "Silva";
     private final String VALID_PASSWORD = "125Adm$";
     private final String VALID_EMAIL = "gibson@gmail.com";
     private final UUID VALID_ROLEID = UUID.fromString("318df173-32e1-4865-b380-e3f2343955b4");
@@ -22,9 +21,9 @@ class UserTest {
     void shouldThrowExceptionWhenNameIsEmpty() {
         assertThrows(BusinessException.class, () -> User.create(
                 VALID_ID,
-                Name.create(""),
+                "",
                 VALID_LASTNAME,
-                Email.create(VALID_EMAIL),
+                VALID_EMAIL,
                 VALID_PASSWORD,
                 VALID_ROLEID
         ));
@@ -34,9 +33,9 @@ class UserTest {
     void shouldThrowExceptionWhenNameIsLessThanThreeCharacters() {
         assertThrows(BusinessException.class, () -> User.create(
                 VALID_ID,
-                Name.create("an"),
+                ("an"),
                 VALID_LASTNAME,
-                Email.create(VALID_EMAIL),
+                VALID_EMAIL,
                 VALID_PASSWORD,
                 VALID_ROLEID
         ));
@@ -46,9 +45,9 @@ class UserTest {
     void shouldThrowExceptionWhenNameIsGreaterThanTwentyCharacters() {
         assertThrows(BusinessException.class, () -> User.create(
                 VALID_ID,
-                Name.create("asdfdsxfdadfdassdfdgfa"),
+                "asdfdsxfdadfdassdfdgfa",
                 VALID_LASTNAME,
-                Email.create(VALID_EMAIL),
+                VALID_EMAIL,
                 VALID_PASSWORD,
                 VALID_ROLEID
         ));
@@ -58,9 +57,9 @@ class UserTest {
     void shouldThrowExceptionWhenNameContainsSpecialCharacters() {
         assertThrows(BusinessException.class, () -> User.create(
                 VALID_ID,
-                Name.create("asdasd!@"),
+                "asdasd!@",
                 VALID_LASTNAME,
-                Email.create(VALID_EMAIL),
+                VALID_EMAIL,
                 VALID_PASSWORD,
                 VALID_ROLEID
         ));
@@ -71,8 +70,8 @@ class UserTest {
         assertThrows(BusinessException.class, () -> User.create(
                 VALID_ID,
                 VALID_NAME,
-                Name.create(""),
-                Email.create(VALID_EMAIL),
+                (""),
+                VALID_EMAIL,
                 VALID_PASSWORD,
                 VALID_ROLEID
         ));
@@ -83,8 +82,8 @@ class UserTest {
         assertThrows(BusinessException.class, () -> User.create(
                 VALID_ID,
                 VALID_NAME,
-                Name.create("as"),
-                Email.create(VALID_EMAIL),
+                ("as"),
+                VALID_EMAIL,
                 VALID_PASSWORD,
                 VALID_ROLEID
         ));
@@ -95,8 +94,8 @@ class UserTest {
         assertThrows(BusinessException.class, () -> User.create(
                 VALID_ID,
                 VALID_NAME,
-                Name.create("djkfjaskdfddfldalasdknkdfmsd"),
-                Email.create(VALID_EMAIL),
+                ("djkfjaskdfddfldalasdknkdfmsd"),
+                VALID_EMAIL,
                 VALID_PASSWORD,
                 VALID_ROLEID
         ));
@@ -107,8 +106,8 @@ class UserTest {
         assertThrows(BusinessException.class, () -> User.create(
                 VALID_ID,
                 VALID_NAME,
-                Name.create("asdasd!@"),
-                Email.create(VALID_EMAIL),
+                ("asdasd!@"),
+                VALID_EMAIL,
                 VALID_PASSWORD,
                 VALID_ROLEID
         ));
@@ -119,7 +118,7 @@ class UserTest {
         assertThrows(BusinessException.class, () -> User.create(
                 VALID_ID, VALID_NAME,
                 VALID_LASTNAME,
-                Email.create(""),
+                "",
                 VALID_PASSWORD,
                 VALID_ROLEID
         ));
@@ -130,7 +129,7 @@ class UserTest {
         assertThrows(BusinessException.class, () -> User.create(
                 VALID_ID, VALID_NAME,
                 VALID_LASTNAME,
-                Email.create("asdfcom"),
+                "asdfcom",
                 VALID_PASSWORD,
                 VALID_ROLEID
         ));
@@ -141,7 +140,7 @@ class UserTest {
         assertThrows(BusinessException.class, () -> User.create(
                 VALID_ID, VALID_NAME,
                 VALID_LASTNAME,
-                Email.create(VALID_EMAIL),
+                VALID_EMAIL,
                 "",
                 VALID_ROLEID
         ));
@@ -152,7 +151,7 @@ class UserTest {
         assertThrows(BusinessException.class, () -> User.create(
                 VALID_ID, VALID_NAME,
                 VALID_LASTNAME,
-                Email.create(VALID_EMAIL),
+                VALID_EMAIL,
                 "12345",
                 VALID_ROLEID
         ));
@@ -165,14 +164,14 @@ class UserTest {
                 VALID_ID,
                 VALID_NAME,
                 VALID_LASTNAME,
-                Email.create(VALID_EMAIL),
+                VALID_EMAIL,
                 VALID_PASSWORD,
                 VALID_ROLEID
         );
 
         assertEquals(VALID_ID, user.getId().getValue());
-        assertEquals(VALID_NAME, user.getName());
-        assertEquals(VALID_LASTNAME, user.getLastname());
+        assertEquals(VALID_NAME, user.getName().getValue());
+        assertEquals(VALID_LASTNAME, user.getLastname().getValue());
         assertEquals(Email.create(VALID_EMAIL), user.getEmail());
     }
 
@@ -183,7 +182,7 @@ class UserTest {
                 VALID_ID,
                 VALID_NAME,
                 VALID_LASTNAME,
-                Email.create(VALID_EMAIL),
+                VALID_EMAIL,
                 VALID_PASSWORD,
                 VALID_ROLEID
         );
@@ -200,7 +199,7 @@ class UserTest {
                 VALID_ID,
                 VALID_NAME,
                 VALID_LASTNAME,
-                Email.create(VALID_EMAIL),
+                VALID_EMAIL,
                 VALID_PASSWORD,
                 VALID_ROLEID
         );
