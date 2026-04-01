@@ -5,8 +5,6 @@ import br.com.codelift.speed.domain.vo.Name;
 import br.com.codelift.speed.exception.BusinessException;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashSet;
-import java.util.Set;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,7 +16,7 @@ class UserTest {
     private final Name VALID_LASTNAME = Name.create("Silva");
     private final String VALID_PASSWORD = "125Adm$";
     private final String VALID_EMAIL = "gibson@gmail.com";
-    private final Set<UUID> VALID_ROLEIDS = new HashSet<>();
+    private final UUID VALID_ROLEID = UUID.fromString("318df173-32e1-4865-b380-e3f2343955b4");
 
     @Test
     void shouldThrowExceptionWhenNameIsEmpty() {
@@ -28,7 +26,7 @@ class UserTest {
                 VALID_LASTNAME,
                 Email.create(VALID_EMAIL),
                 VALID_PASSWORD,
-                VALID_ROLEIDS
+                VALID_ROLEID
         ));
     }
 
@@ -40,7 +38,7 @@ class UserTest {
                 VALID_LASTNAME,
                 Email.create(VALID_EMAIL),
                 VALID_PASSWORD,
-                VALID_ROLEIDS
+                VALID_ROLEID
         ));
     }
 
@@ -52,7 +50,7 @@ class UserTest {
                 VALID_LASTNAME,
                 Email.create(VALID_EMAIL),
                 VALID_PASSWORD,
-                VALID_ROLEIDS
+                VALID_ROLEID
         ));
     }
 
@@ -64,7 +62,7 @@ class UserTest {
                 VALID_LASTNAME,
                 Email.create(VALID_EMAIL),
                 VALID_PASSWORD,
-                VALID_ROLEIDS
+                VALID_ROLEID
         ));
     }
 
@@ -76,7 +74,7 @@ class UserTest {
                 Name.create(""),
                 Email.create(VALID_EMAIL),
                 VALID_PASSWORD,
-                VALID_ROLEIDS
+                VALID_ROLEID
         ));
     }
 
@@ -88,7 +86,7 @@ class UserTest {
                 Name.create("as"),
                 Email.create(VALID_EMAIL),
                 VALID_PASSWORD,
-                VALID_ROLEIDS
+                VALID_ROLEID
         ));
     }
 
@@ -100,7 +98,7 @@ class UserTest {
                 Name.create("djkfjaskdfddfldalasdknkdfmsd"),
                 Email.create(VALID_EMAIL),
                 VALID_PASSWORD,
-                VALID_ROLEIDS
+                VALID_ROLEID
         ));
     }
 
@@ -112,7 +110,7 @@ class UserTest {
                 Name.create("asdasd!@"),
                 Email.create(VALID_EMAIL),
                 VALID_PASSWORD,
-                VALID_ROLEIDS
+                VALID_ROLEID
         ));
     }
 
@@ -123,7 +121,7 @@ class UserTest {
                 VALID_LASTNAME,
                 Email.create(""),
                 VALID_PASSWORD,
-                VALID_ROLEIDS
+                VALID_ROLEID
         ));
     }
 
@@ -134,7 +132,7 @@ class UserTest {
                 VALID_LASTNAME,
                 Email.create("asdfcom"),
                 VALID_PASSWORD,
-                VALID_ROLEIDS
+                VALID_ROLEID
         ));
     }
 
@@ -145,7 +143,7 @@ class UserTest {
                 VALID_LASTNAME,
                 Email.create(VALID_EMAIL),
                 "",
-                VALID_ROLEIDS
+                VALID_ROLEID
         ));
     }
 
@@ -156,7 +154,7 @@ class UserTest {
                 VALID_LASTNAME,
                 Email.create(VALID_EMAIL),
                 "12345",
-                VALID_ROLEIDS
+                VALID_ROLEID
         ));
     }
 
@@ -169,7 +167,7 @@ class UserTest {
                 VALID_LASTNAME,
                 Email.create(VALID_EMAIL),
                 VALID_PASSWORD,
-                VALID_ROLEIDS
+                VALID_ROLEID
         );
 
         assertEquals(VALID_ID, user.getId().getValue());
@@ -187,7 +185,7 @@ class UserTest {
                 VALID_LASTNAME,
                 Email.create(VALID_EMAIL),
                 VALID_PASSWORD,
-                VALID_ROLEIDS
+                VALID_ROLEID
         );
 
         user.addRole(VALID_ID);
@@ -204,7 +202,7 @@ class UserTest {
                 VALID_LASTNAME,
                 Email.create(VALID_EMAIL),
                 VALID_PASSWORD,
-                VALID_ROLEIDS
+                VALID_ROLEID
         );
 
         user.addRole(UUID.fromString("4859cafd-f302-4f9e-9efb-58d77761d097"));
