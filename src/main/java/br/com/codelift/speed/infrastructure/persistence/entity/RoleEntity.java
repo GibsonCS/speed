@@ -15,4 +15,12 @@ public class RoleEntity {
     @Id
     private UUID id;
     private String name;
+
+    public RoleEntity() {
+    }
+
+    public RoleEntity(String name, UUID id) {
+        this.name = name;
+        this.id = id;
+    }
 }
