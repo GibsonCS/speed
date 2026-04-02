@@ -1,14 +1,27 @@
 package br.com.codelift.speed.usecase;
 
+import br.com.codelift.speed.domain.entity.User;
+import br.com.codelift.speed.domain.repository.UserRepository;
 import br.com.codelift.speed.domain.vo.Email;
 import br.com.codelift.speed.domain.vo.Name;
-import br.com.codelift.speed.usecase.infrastructure.web.dto.UserRequest;
-import br.com.codelift.speed.usecase.infrastructure.web.dto.UserResponse;
+import br.com.codelift.speed.exception.BusinessException;
+import br.com.codelift.speed.infrastructure.web.dto.UserRequest;
+import br.com.codelift.speed.infrastructure.web.dto.UserResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.util.Optional;
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
+@ExtendWith(MockitoExtension.class)
 class CreateUserTest {
 
     String VALID_NAME = Name.create("Gibson").getValue();
@@ -16,19 +29,36 @@ class CreateUserTest {
     String VALID_EMAIL = Email.create("gibson.cruz@gmail.com").getValue();
     String VALID_PASSWORD = "123456789";
 
+    @Mock
+    UserRepository userRepository;
+
+    @InjectMocks
     CreateUser createUser;
+
     UserRequest userRequest;
+
+    User user;
 
     @BeforeEach
     void setup() {
-        createUser = new CreateUser();
+
         userRequest = new UserRequest(
                 VALID_NAME,
                 VALID_LASTNAME,
                 VALID_EMAIL,
                 VALID_PASSWORD
         );
+
+        user = User.create(
+                UUID.randomUUID(),
+                VALID_NAME,
+                VALID_LASTNAME,
+                VALID_EMAIL,
+                VALID_PASSWORD,
+                UUID.randomUUID()
+        );
     }
+
 
     @Test
     void shouldCreateNewUser() {
@@ -36,5 +66,13 @@ class CreateUserTest {
         UserResponse userResponse = createUser.execute(userRequest);
 
         assertNotNull(userResponse.id());
+    }
+
+    @Test
+    void shouldNotCreateAnUserWithDuplicatedEmail() {
+
+        Mockito.when(userRepository.findByEmail(VALID_EMAIL)).thenReturn(Optional.of(user));
+
+        assertThrows(BusinessException.class, () -> createUser.execute(userRequest));
     }
 }
