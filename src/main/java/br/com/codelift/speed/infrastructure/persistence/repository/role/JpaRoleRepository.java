@@ -1,4 +1,4 @@
-package br.com.codelift.speed.infrastructure.persistence.repository;
+package br.com.codelift.speed.infrastructure.persistence.repository.role;
 
 import br.com.codelift.speed.infrastructure.persistence.entity.RoleEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
