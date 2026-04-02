@@ -20,9 +20,9 @@ public class User {
 
     public static User create(
             UUID id,
-            Name name,
-            Name lastname,
-            Email email,
+            String name,
+            String lastname,
+            String email,
             String password,
             UUID roleId
     ) {
@@ -30,9 +30,9 @@ public class User {
 
         return new User(
                 Id.create(id),
-                name,
-                lastname,
-                email,
+                Name.create(name),
+                Name.create(lastname),
+                Email.create(email),
                 password,
                 roleId
         );
