@@ -1,7 +1,7 @@
-package br.com.codelift.speed.domain.entity;
+package br.com.codelift.speed.core.domain.entity;
 
-import br.com.codelift.speed.domain.entity.enums.ServiceStatus;
-import br.com.codelift.speed.domain.vo.Id;
+import br.com.codelift.speed.core.domain.entity.enums.ServiceStatus;
+import br.com.codelift.speed.core.domain.vo.Id;
 import br.com.codelift.speed.exception.BusinessException;
 
 import java.math.BigDecimal;

@@ -1,6 +1,6 @@
-package br.com.codelift.speed.domain.repository;
+package br.com.codelift.speed.core.domain.repository;
 
-import br.com.codelift.speed.domain.entity.User;
+import br.com.codelift.speed.core.domain.entity.User;
 
 import java.util.Optional;
 import java.util.UUID;

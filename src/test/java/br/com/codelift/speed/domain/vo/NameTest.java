@@ -1,5 +1,6 @@
 package br.com.codelift.speed.domain.vo;
 
+import br.com.codelift.speed.core.domain.vo.Name;
 import br.com.codelift.speed.exception.BusinessException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

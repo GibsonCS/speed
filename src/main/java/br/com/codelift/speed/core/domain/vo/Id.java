@@ -1,4 +1,4 @@
-package br.com.codelift.speed.domain.vo;
+package br.com.codelift.speed.core.domain.vo;
 
 import br.com.codelift.speed.exception.BusinessException;
 
@@ -11,7 +11,7 @@ public class Id {
 
     public static Id create(UUID value) {
         validate(value);
-        
+
         return new Id(value);
     }
 

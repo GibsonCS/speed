@@ -1,7 +1,7 @@
-package br.com.codelift.speed.usecase;
+package br.com.codelift.speed.core.usecase;
 
-import br.com.codelift.speed.domain.entity.User;
-import br.com.codelift.speed.domain.repository.UserRepository;
+import br.com.codelift.speed.core.domain.entity.User;
+import br.com.codelift.speed.core.domain.repository.UserRepository;
 import br.com.codelift.speed.exception.BusinessException;
 import br.com.codelift.speed.infrastructure.web.dto.UserRequest;
 import br.com.codelift.speed.infrastructure.web.dto.UserResponse;
