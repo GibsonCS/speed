@@ -1,14 +1,13 @@
 package br.com.codelift.speed;
 
-
 import br.com.codelift.speed.core.domain.repository.RoleRepository;
 import br.com.codelift.speed.core.domain.repository.UserRepository;
 import br.com.codelift.speed.core.domain.vo.Email;
 import br.com.codelift.speed.core.domain.vo.Name;
 import br.com.codelift.speed.core.usecase.CreateUser;
 import br.com.codelift.speed.infrastructure.persistence.entity.RoleEntity;
-import br.com.codelift.speed.infrastructure.persistence.repository.JpaRoleRepository;
-import br.com.codelift.speed.infrastructure.persistence.repository.UserRepositoryImp;
+import br.com.codelift.speed.infrastructure.persistence.repository.role.JpaRoleRepository;
+import br.com.codelift.speed.infrastructure.persistence.repository.user.UserRepositoryImp;
 import br.com.codelift.speed.infrastructure.web.dto.UserRequest;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -23,7 +22,6 @@ public class Seed implements CommandLineRunner {
     UserRepository userRepositoryImp;
 
     RoleRepository roleRepository;
-
 
     public Seed(JpaRoleRepository jpaRoleRepository, UserRepositoryImp userRepositoryImp, RoleRepository roleRepository) {
         this.jpaRoleRepository = jpaRoleRepository;
