@@ -1,8 +1,15 @@
 package br.com.codelift.speed;
 
 
+import br.com.codelift.speed.core.domain.repository.RoleRepository;
+import br.com.codelift.speed.core.domain.repository.UserRepository;
+import br.com.codelift.speed.core.domain.vo.Email;
+import br.com.codelift.speed.core.domain.vo.Name;
+import br.com.codelift.speed.core.usecase.CreateUser;
 import br.com.codelift.speed.infrastructure.persistence.entity.RoleEntity;
 import br.com.codelift.speed.infrastructure.persistence.repository.JpaRoleRepository;
+import br.com.codelift.speed.infrastructure.persistence.repository.UserRepositoryImp;
+import br.com.codelift.speed.infrastructure.web.dto.UserRequest;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -13,8 +20,15 @@ public class Seed implements CommandLineRunner {
 
     JpaRoleRepository jpaRoleRepository;
 
-    public Seed(JpaRoleRepository jpaRoleRepository) {
+    UserRepository userRepositoryImp;
+
+    RoleRepository roleRepository;
+
+
+    public Seed(JpaRoleRepository jpaRoleRepository, UserRepositoryImp userRepositoryImp, RoleRepository roleRepository) {
         this.jpaRoleRepository = jpaRoleRepository;
+        this.userRepositoryImp = userRepositoryImp;
+        this.roleRepository = roleRepository;
     }
 
     @Override
@@ -32,5 +46,21 @@ public class Seed implements CommandLineRunner {
 
         jpaRoleRepository.save(userRole);
         jpaRoleRepository.save(adminRole);
+
+        CreateUser createUser = new CreateUser(userRepositoryImp, roleRepository);
+
+        String VALID_NAME = Name.create("Gibson").getValue();
+        String VALID_LASTNAME = Name.create("Cruz").getValue();
+        String VALID_EMAIL = Email.create("gibson.cruz@gmail.com").getValue();
+        String VALID_PASSWORD = "123456789";
+
+        UserRequest userRequest = new UserRequest(
+                VALID_NAME,
+                VALID_LASTNAME,
+                VALID_EMAIL,
+                VALID_PASSWORD
+        );
+
+        createUser.execute(userRequest);
     }
 }
