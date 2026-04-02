@@ -1,4 +1,4 @@
-package br.com.codelift.speed.usecase.infrastructure.web.dto;
+package br.com.codelift.speed.infrastructure.web.dto;
 
 import java.util.UUID;
 
