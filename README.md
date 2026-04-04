@@ -46,22 +46,6 @@ A API orquestra o fluxo entre usuários e prestadores de serviço através das s
 
 ---
 
-## 🛠️ Roadmap de Desenvolvimento
-
-O projeto está sendo construído seguindo uma estratégia **Inside-Out** (do núcleo para a periferia), garantindo que as
-regras de negócio sejam sólidas antes da exposição de qualquer interface externa.
-
-- [x] **Setup e Arquitetura:** Inicialização do ecossistema Java 17/Spring Boot 4.0.3 e definição da estrutura de
-  pastas.
-- [x] **Core de Domínio:** Implementação de Agregados, Entidades e *Value Objects* com lógica de autovalidação.
-- [ ] **Camada de Aplicação (WIP):** Desenvolvimento dos Casos de Uso (*Use Cases*).
-- [ ] **Adaptadores de Interface:** Implementação de *Controllers* REST e mapeamento de DTOs.
-- [ ] **Infraestrutura e Persistência:** Configuração de Repositórios com Spring Data JPA e integração com base de
-  dados.
-- [ ] **Ecossistema Docker:** Orquestração completa via Docker Compose para ambiente de desenvolvimento e testes.
-
----
-
 ## 🏗️ Arquitetura e Modelagem de Dados
 
 O **Speed Service API** utiliza os padrões do **DDD** para separar responsabilidades e garantir que o domínio seja rico
