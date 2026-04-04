@@ -5,6 +5,8 @@ import br.com.codelift.speed.core.domain.vo.Email;
 import br.com.codelift.speed.exception.BusinessException;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -16,10 +18,11 @@ class UserTest {
     private final String VALID_LASTNAME = "Silva";
     private final String VALID_PASSWORD = "125Adm$";
     private final String VALID_EMAIL = "gibson@gmail.com";
-    private final UUID VALID_ROLEID = UUID.fromString("318df173-32e1-4865-b380-e3f2343955b4");
+    private final Set<UUID> VALID_ROLEID = new HashSet<>();
 
     @Test
     void shouldThrowExceptionWhenNameIsEmpty() {
+        VALID_ROLEID.add(UUID.fromString("318df173-32e1-4865-b380-e3f2343955b4"));
         assertThrows(BusinessException.class, () -> User.create(
                 VALID_ID,
                 "",
@@ -32,6 +35,7 @@ class UserTest {
 
     @Test
     void shouldThrowExceptionWhenNameIsLessThanThreeCharacters() {
+        VALID_ROLEID.add(UUID.fromString("318df173-32e1-4865-b380-e3f2343955b4"));
         assertThrows(BusinessException.class, () -> User.create(
                 VALID_ID,
                 ("an"),
@@ -44,6 +48,7 @@ class UserTest {
 
     @Test
     void shouldThrowExceptionWhenNameIsGreaterThanTwentyCharacters() {
+        VALID_ROLEID.add(UUID.fromString("318df173-32e1-4865-b380-e3f2343955b4"));
         assertThrows(BusinessException.class, () -> User.create(
                 VALID_ID,
                 "asdfdsxfdadfdassdfdgfa",
@@ -56,6 +61,7 @@ class UserTest {
 
     @Test
     void shouldThrowExceptionWhenNameContainsSpecialCharacters() {
+        VALID_ROLEID.add(UUID.fromString("318df173-32e1-4865-b380-e3f2343955b4"));
         assertThrows(BusinessException.class, () -> User.create(
                 VALID_ID,
                 "asdasd!@",
@@ -68,6 +74,7 @@ class UserTest {
 
     @Test
     void shouldThrowExceptionWhenLastNameIsEmpty() {
+        VALID_ROLEID.add(UUID.fromString("318df173-32e1-4865-b380-e3f2343955b4"));
         assertThrows(BusinessException.class, () -> User.create(
                 VALID_ID,
                 VALID_NAME,
@@ -80,6 +87,7 @@ class UserTest {
 
     @Test
     void shouldThrowExceptionWhenLastNameIsLessThanThreeCharacters() {
+        VALID_ROLEID.add(UUID.fromString("318df173-32e1-4865-b380-e3f2343955b4"));
         assertThrows(BusinessException.class, () -> User.create(
                 VALID_ID,
                 VALID_NAME,
@@ -92,6 +100,7 @@ class UserTest {
 
     @Test
     void shouldThrowExceptionWhenLastNameIsGreaterThanTwentyCharacters() {
+        VALID_ROLEID.add(UUID.fromString("318df173-32e1-4865-b380-e3f2343955b4"));
         assertThrows(BusinessException.class, () -> User.create(
                 VALID_ID,
                 VALID_NAME,
@@ -104,6 +113,7 @@ class UserTest {
 
     @Test
     void shouldThrowExceptionWhenLastNameContainsSpecialCharacters() {
+        VALID_ROLEID.add(UUID.fromString("318df173-32e1-4865-b380-e3f2343955b4"));
         assertThrows(BusinessException.class, () -> User.create(
                 VALID_ID,
                 VALID_NAME,
@@ -116,6 +126,7 @@ class UserTest {
 
     @Test
     void shouldThrowExceptionWhenEmailIsEmpty() {
+        VALID_ROLEID.add(UUID.fromString("318df173-32e1-4865-b380-e3f2343955b4"));
         assertThrows(BusinessException.class, () -> User.create(
                 VALID_ID, VALID_NAME,
                 VALID_LASTNAME,
@@ -127,6 +138,7 @@ class UserTest {
 
     @Test
     void shouldThrowExceptionWhenEmailIsInvalid() {
+        VALID_ROLEID.add(UUID.fromString("318df173-32e1-4865-b380-e3f2343955b4"));
         assertThrows(BusinessException.class, () -> User.create(
                 VALID_ID, VALID_NAME,
                 VALID_LASTNAME,
@@ -138,6 +150,7 @@ class UserTest {
 
     @Test
     void shouldThrowExceptionWhenPasswordIsEmpty() {
+        VALID_ROLEID.add(UUID.fromString("318df173-32e1-4865-b380-e3f2343955b4"));
         assertThrows(BusinessException.class, () -> User.create(
                 VALID_ID, VALID_NAME,
                 VALID_LASTNAME,
@@ -149,6 +162,7 @@ class UserTest {
 
     @Test
     void shouldThrowExceptionWhenPasswordIsNotBetweenSixAndTwelveCharacters() {
+        VALID_ROLEID.add(UUID.fromString("318df173-32e1-4865-b380-e3f2343955b4"));
         assertThrows(BusinessException.class, () -> User.create(
                 VALID_ID, VALID_NAME,
                 VALID_LASTNAME,
@@ -160,6 +174,7 @@ class UserTest {
 
     @Test
     void shouldCreateValidUser() {
+        VALID_ROLEID.add(UUID.fromString("318df173-32e1-4865-b380-e3f2343955b4"));
 
         User user = User.create(
                 VALID_ID,
@@ -178,6 +193,7 @@ class UserTest {
 
     @Test
     void shouldAddRole() {
+        VALID_ROLEID.add(UUID.fromString("318df173-32e1-4865-b380-e3f2343955b4"));
 
         User user = User.create(
                 VALID_ID,
@@ -195,6 +211,7 @@ class UserTest {
 
     @Test
     void shouldNotAddRoleThatHasAlreadyExists() {
+        VALID_ROLEID.add(UUID.fromString("318df173-32e1-4865-b380-e3f2343955b4"));
 
         User user = User.create(
                 VALID_ID,
