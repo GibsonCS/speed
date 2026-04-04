@@ -6,11 +6,13 @@ import br.com.codelift.speed.core.domain.repository.UserRepository;
 import br.com.codelift.speed.exception.BusinessException;
 import br.com.codelift.speed.infrastructure.web.dto.UserRequest;
 import br.com.codelift.speed.infrastructure.web.dto.UserResponse;
+import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
+@Service
 public class CreateUser {
 
     private final UserRepository userRepository;
@@ -26,7 +28,7 @@ public class CreateUser {
         if (userRepository.findByEmail(userRequest.email()).isPresent()) {
             throw new BusinessException("User not exists");
         }
-        
+
         Set<UUID> roleIds = new HashSet<>();
 
         roleRepository.findByName("USER").ifPresent(r -> {
