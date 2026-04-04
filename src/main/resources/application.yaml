@@ -12,5 +12,7 @@ spring:
       path: /h2-console
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     show-sql: true
+    #Espera o hibernate criar banco antes de rodar o data.sql
+    defer-datasource-initialization: true
