@@ -4,6 +4,7 @@ package br.com.codelift.speed.infrastructure.web.controller;
 import br.com.codelift.speed.core.usecase.CreateUser;
 import br.com.codelift.speed.infrastructure.web.dto.UserRequest;
 import br.com.codelift.speed.infrastructure.web.dto.UserResponse;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,7 +26,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserResponse> handleCreateUser(@RequestBody UserRequest userRequest) {
+    public ResponseEntity<UserResponse> handleCreateUser(@RequestBody @Valid UserRequest userRequest) {
 
         UserResponse userCreated = createUser.execute(userRequest);
 
