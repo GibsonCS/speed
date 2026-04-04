@@ -16,7 +16,7 @@ public class User {
     private final Name lastname;
     private final Email email;
     private final String encryptedPassword;
-    private final Set<UUID> roleIds = new HashSet<>();
+    private Set<UUID> roleIds;
 
     public static User create(
             UUID id,
@@ -24,7 +24,7 @@ public class User {
             String lastname,
             String email,
             String password,
-            UUID roleId
+            Set<UUID> roleIds
     ) {
         validatePassword(password);
 
@@ -34,7 +34,7 @@ public class User {
                 Name.create(lastname),
                 Email.create(email),
                 password,
-                roleId
+                roleIds
         );
     }
 
@@ -61,14 +61,14 @@ public class User {
             Name lastname,
             Email email,
             String password,
-            UUID roleId
+            Set<UUID> roleIds
     ) {
         this.id = id;
         this.name = name;
         this.lastname = lastname;
         this.email = email;
         this.encryptedPassword = password;
-        this.roleIds.add(roleId);
+        this.roleIds = roleIds == null ? new HashSet<>() : roleIds;
     }
 
     public Id getId() {
