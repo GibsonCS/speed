@@ -17,6 +17,18 @@ public class UserEntity {
     private String email;
     private String password;
 
+    public UserEntity() {
+    }
+
+    public UserEntity(UUID id, String name, String lastname, String email, String password, Set<RoleEntity> roles) {
+        this.id = id;
+        this.name = name;
+        this.lastname = lastname;
+        this.email = email;
+        this.password = password;
+        this.roles = roles;
+    }
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_roles",
