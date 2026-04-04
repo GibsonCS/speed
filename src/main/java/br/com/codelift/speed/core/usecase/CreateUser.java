@@ -7,6 +7,8 @@ import br.com.codelift.speed.exception.BusinessException;
 import br.com.codelift.speed.infrastructure.web.dto.UserRequest;
 import br.com.codelift.speed.infrastructure.web.dto.UserResponse;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 public class CreateUser {
@@ -24,17 +26,20 @@ public class CreateUser {
         if (userRepository.findByEmail(userRequest.email()).isPresent()) {
             throw new BusinessException("User not exists");
         }
+        
+        Set<UUID> roleIds = new HashSet<>();
 
-        UUID id = UUID.randomUUID();
-        UUID roleId = roleRepository.findByName("USER").get().getId();
+        roleRepository.findByName("USER").ifPresent(r -> {
+            roleIds.add(r.getId());
+        });
 
         User user = User.create(
-                id,
+                UUID.randomUUID(),
                 userRequest.name(),
                 userRequest.lastname(),
                 userRequest.email(),
                 userRequest.password(),
-                roleId
+                roleIds
         );
 
         userRepository.save(user);
