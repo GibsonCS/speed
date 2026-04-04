@@ -2,8 +2,10 @@ package br.com.codelift.speed.infrastructure.persistence.repository.user;
 
 import br.com.codelift.speed.core.domain.entity.User;
 import br.com.codelift.speed.core.domain.repository.UserRepository;
+import br.com.codelift.speed.exception.BusinessException;
 import br.com.codelift.speed.infrastructure.persistence.entity.RoleEntity;
 import br.com.codelift.speed.infrastructure.persistence.entity.UserEntity;
+import br.com.codelift.speed.infrastructure.persistence.repository.mapper.UserMapper;
 import br.com.codelift.speed.infrastructure.persistence.repository.role.JpaRoleRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,38 +13,30 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Repository
 public class UserRepositoryImp implements UserRepository {
 
     private final JpaUserRepository jpaUserRepository;
     private final JpaRoleRepository jpaRoleRepository;
+    private final UserMapper userMapper;
 
-    public UserRepositoryImp(JpaUserRepository jpaUserRepository, JpaRoleRepository jpaRoleRepository) {
+    public UserRepositoryImp(JpaUserRepository jpaUserRepository, JpaRoleRepository jpaRoleRepository, UserMapper userMapper) {
         this.jpaUserRepository = jpaUserRepository;
         this.jpaRoleRepository = jpaRoleRepository;
+        this.userMapper = userMapper;
     }
 
     @Override
     public Optional<User> findById(UUID id) {
+        
+        Optional<UserEntity> userEntity = jpaUserRepository.findById(id);
 
-        return jpaUserRepository.findById(id).map(userEntity -> {
+        if (userEntity.isEmpty()) {
+            throw new BusinessException("User not exists!");
+        }
 
-            Set<UUID> roleIds = userEntity.getRoles()
-                    .stream()
-                    .map(RoleEntity::getId)
-                    .collect(Collectors.toSet());
-
-            return User.create(
-                    userEntity.getId(),
-                    userEntity.getName(),
-                    userEntity.getLastname(),
-                    userEntity.getEmail(),
-                    userEntity.getPassword(),
-                    roleIds
-            );
-        });
+        return Optional.of(userMapper.toDomain(userEntity.get()));
     }
 
     @Override
