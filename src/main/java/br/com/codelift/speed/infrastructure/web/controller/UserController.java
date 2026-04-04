@@ -1,4 +1,4 @@
-package br.com.codelift.speed.infrastructure.web.dto.controller;
+package br.com.codelift.speed.infrastructure.web.controller;
 
 
 import br.com.codelift.speed.core.usecase.CreateUser;
