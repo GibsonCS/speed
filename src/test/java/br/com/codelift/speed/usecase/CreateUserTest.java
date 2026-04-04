@@ -16,7 +16,9 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -29,6 +31,7 @@ class CreateUserTest {
     String VALID_LASTNAME = Name.create("Cruz").getValue();
     String VALID_EMAIL = Email.create("gibson.cruz@gmail.com").getValue();
     String VALID_PASSWORD = "123456789";
+    Set<UUID> VALID_ROLE = new HashSet<>();
 
     @Mock
     UserRepository userRepository;
@@ -50,17 +53,18 @@ class CreateUserTest {
                 VALID_PASSWORD
         );
 
+        VALID_ROLE.add(UUID.randomUUID());
+
         user = User.create(
                 UUID.randomUUID(),
                 VALID_NAME,
                 VALID_LASTNAME,
                 VALID_EMAIL,
                 VALID_PASSWORD,
-                UUID.randomUUID()
+                VALID_ROLE
         );
     }
-
-
+    
     @Test
     void shouldCreateNewUser() {
 
