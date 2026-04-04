@@ -1,6 +1,8 @@
 package br.com.codelift.speed.usecase;
 
+import br.com.codelift.speed.core.domain.entity.Role;
 import br.com.codelift.speed.core.domain.entity.User;
+import br.com.codelift.speed.core.domain.repository.RoleRepository;
 import br.com.codelift.speed.core.domain.repository.UserRepository;
 import br.com.codelift.speed.core.domain.vo.Email;
 import br.com.codelift.speed.core.domain.vo.Name;
@@ -36,6 +38,9 @@ class CreateUserTest {
     @Mock
     UserRepository userRepository;
 
+    @Mock
+    RoleRepository roleRepository;
+
     @InjectMocks
     CreateUser createUser;
 
@@ -64,9 +69,15 @@ class CreateUserTest {
                 VALID_ROLE
         );
     }
-    
+
     @Test
     void shouldCreateNewUser() {
+
+        Role role = new Role(UUID.fromString("318df173-32e1-4865-b380-e3f2343955b4"), "USER");
+
+        Mockito.when(userRepository.findByEmail(VALID_EMAIL)).thenReturn(Optional.empty());
+
+        Mockito.when(roleRepository.findByName("USER")).thenReturn(Optional.of(role));
 
         UserResponse userResponse = createUser.execute(userRequest);
 
