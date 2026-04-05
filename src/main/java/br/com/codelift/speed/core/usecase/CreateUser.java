@@ -1,11 +1,11 @@
 package br.com.codelift.speed.core.usecase;
 
 import br.com.codelift.speed.core.domain.entity.User;
-import br.com.codelift.speed.core.exception.BusinessException;
 import br.com.codelift.speed.core.domain.repository.RoleRepository;
 import br.com.codelift.speed.core.domain.repository.UserRepository;
-import br.com.codelift.speed.infrastructure.web.dto.UserRequest;
-import br.com.codelift.speed.infrastructure.web.dto.UserResponse;
+import br.com.codelift.speed.core.exception.BusinessException;
+import br.com.codelift.speed.infrastructure.web.dto.CreateUserRequest;
+import br.com.codelift.speed.infrastructure.web.dto.CreateUserResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -23,9 +23,9 @@ public class CreateUser {
         this.roleRepository = roleRepository;
     }
 
-    public UserResponse execute(UserRequest userRequest) {
+    public CreateUserResponse execute(CreateUserRequest createUserRequest) {
 
-        if (userRepository.findByEmail(userRequest.email()).isPresent()) {
+        if (userRepository.findByEmail(createUserRequest.email()).isPresent()) {
             throw new BusinessException("User not exists");
         }
 
@@ -37,15 +37,15 @@ public class CreateUser {
 
         User user = User.create(
                 UUID.randomUUID(),
-                userRequest.name(),
-                userRequest.lastname(),
-                userRequest.email(),
-                userRequest.password(),
+                createUserRequest.name(),
+                createUserRequest.lastname(),
+                createUserRequest.email(),
+                createUserRequest.password(),
                 roleIds
         );
 
         userRepository.save(user);
 
-        return new UserResponse(user.getId().getValue());
+        return new CreateUserResponse(user.getId().getValue());
     }
 }

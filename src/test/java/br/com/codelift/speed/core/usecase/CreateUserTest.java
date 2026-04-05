@@ -7,8 +7,8 @@ import br.com.codelift.speed.core.domain.repository.UserRepository;
 import br.com.codelift.speed.core.domain.vo.Email;
 import br.com.codelift.speed.core.domain.vo.Name;
 import br.com.codelift.speed.core.exception.BusinessException;
-import br.com.codelift.speed.infrastructure.web.dto.UserRequest;
-import br.com.codelift.speed.infrastructure.web.dto.UserResponse;
+import br.com.codelift.speed.infrastructure.web.dto.CreateUserRequest;
+import br.com.codelift.speed.infrastructure.web.dto.CreateUserResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -43,14 +43,14 @@ class CreateUserTest {
     @InjectMocks
     CreateUser createUser;
 
-    UserRequest userRequest;
+    CreateUserRequest createUserRequest;
 
     User user;
 
     @BeforeEach
     void setup() {
 
-        userRequest = new UserRequest(
+        createUserRequest = new CreateUserRequest(
                 VALID_NAME,
                 VALID_LASTNAME,
                 VALID_EMAIL,
@@ -78,9 +78,9 @@ class CreateUserTest {
 
         Mockito.when(roleRepository.findByName("USER")).thenReturn(Optional.of(role));
 
-        UserResponse userResponse = createUser.execute(userRequest);
+        CreateUserResponse createUserResponse = createUser.execute(createUserRequest);
 
-        assertNotNull(userResponse.id());
+        assertNotNull(createUserResponse.id());
     }
 
     @Test
@@ -88,6 +88,6 @@ class CreateUserTest {
 
         Mockito.when(userRepository.findByEmail(VALID_EMAIL)).thenReturn(Optional.of(user));
 
-        assertThrows(BusinessException.class, () -> createUser.execute(userRequest));
+        assertThrows(BusinessException.class, () -> createUser.execute(createUserRequest));
     }
 }

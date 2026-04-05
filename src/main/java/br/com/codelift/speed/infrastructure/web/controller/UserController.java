@@ -3,8 +3,8 @@ package br.com.codelift.speed.infrastructure.web.controller;
 
 import br.com.codelift.speed.core.usecase.CreateUser;
 import br.com.codelift.speed.core.usecase.DeleteUser;
-import br.com.codelift.speed.infrastructure.web.dto.UserRequest;
-import br.com.codelift.speed.infrastructure.web.dto.UserResponse;
+import br.com.codelift.speed.infrastructure.web.dto.CreateUserRequest;
+import br.com.codelift.speed.infrastructure.web.dto.CreateUserResponse;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,9 +26,9 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserResponse> handleCreateUser(@RequestBody @Valid UserRequest userRequest) {
+    public ResponseEntity<CreateUserResponse> handleCreateUser(@RequestBody @Valid CreateUserRequest createUserRequest) {
 
-        UserResponse userCreated = createUser.execute(userRequest);
+        CreateUserResponse userCreated = createUser.execute(createUserRequest);
 
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()

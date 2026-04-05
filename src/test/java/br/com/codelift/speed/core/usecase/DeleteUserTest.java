@@ -5,7 +5,7 @@ import br.com.codelift.speed.core.domain.repository.UserRepository;
 import br.com.codelift.speed.core.domain.vo.Email;
 import br.com.codelift.speed.core.domain.vo.Name;
 import br.com.codelift.speed.core.exception.BusinessException;
-import br.com.codelift.speed.infrastructure.web.dto.UserRequest;
+import br.com.codelift.speed.infrastructure.web.dto.CreateUserRequest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,7 +29,7 @@ class DeleteUserTest {
     String VALID_PASSWORD = "123456789";
     Set<UUID> VALID_ROLE = new HashSet<>();
 
-    UserRequest userRequest;
+    CreateUserRequest createUserRequest;
 
     User user;
 
@@ -42,7 +42,7 @@ class DeleteUserTest {
     @BeforeEach
     void setup() {
 
-        userRequest = new UserRequest(
+        createUserRequest = new CreateUserRequest(
                 VALID_NAME,
                 VALID_LASTNAME,
                 VALID_EMAIL,
