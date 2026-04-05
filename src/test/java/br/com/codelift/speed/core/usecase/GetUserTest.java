@@ -4,6 +4,7 @@ import br.com.codelift.speed.core.domain.entity.User;
 import br.com.codelift.speed.core.domain.repository.UserRepository;
 import br.com.codelift.speed.core.domain.vo.Email;
 import br.com.codelift.speed.core.domain.vo.Name;
+import br.com.codelift.speed.core.exception.BusinessException;
 import br.com.codelift.speed.infrastructure.web.dto.CreateUserRequest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -64,11 +65,19 @@ class GetUserTest {
 
     @Test
     void shouldGetAnUser() {
-        
+
         Mockito.when(userRepository.findById(VALID_UUID)).thenReturn(Optional.of(user));
 
         User foundedUser = getUser.execute(VALID_UUID);
 
         Assertions.assertEquals(user.getId(), foundedUser.getId());
+    }
+
+    @Test
+    void shouldNotGetUnExistsUser() {
+
+        Mockito.when(userRepository.findById(VALID_UUID)).thenReturn(Optional.empty());
+
+        Assertions.assertThrows(BusinessException.class, () -> getUser.execute(VALID_UUID));
     }
 }
