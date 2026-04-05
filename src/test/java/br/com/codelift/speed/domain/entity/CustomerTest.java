@@ -1,9 +1,9 @@
 package br.com.codelift.speed.domain.entity;
 
 import br.com.codelift.speed.core.domain.entity.Customer;
+import br.com.codelift.speed.core.exception.BusinessException;
 import br.com.codelift.speed.core.domain.vo.Address;
 import br.com.codelift.speed.core.domain.vo.Phone;
-import br.com.codelift.speed.exception.BusinessException;
 import org.junit.jupiter.api.Test;
 
 import java.util.UUID;

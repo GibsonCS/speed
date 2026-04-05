@@ -2,7 +2,7 @@ package br.com.codelift.speed.domain.entity;
 
 import br.com.codelift.speed.core.domain.entity.Service;
 import br.com.codelift.speed.core.domain.entity.enums.ServiceStatus;
-import br.com.codelift.speed.exception.BusinessException;
+import br.com.codelift.speed.core.exception.BusinessException;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;

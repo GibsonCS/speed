@@ -1,9 +1,9 @@
 package br.com.codelift.speed.core.domain.entity;
 
+import br.com.codelift.speed.core.exception.BusinessException;
 import br.com.codelift.speed.core.domain.vo.Email;
 import br.com.codelift.speed.core.domain.vo.Id;
 import br.com.codelift.speed.core.domain.vo.Name;
-import br.com.codelift.speed.exception.BusinessException;
 
 import java.util.HashSet;
 import java.util.Set;

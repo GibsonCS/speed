@@ -1,8 +1,8 @@
 package br.com.codelift.speed.core.domain.entity;
 
 import br.com.codelift.speed.core.domain.entity.enums.OrderStatus;
+import br.com.codelift.speed.core.exception.BusinessException;
 import br.com.codelift.speed.core.domain.vo.Id;
-import br.com.codelift.speed.exception.BusinessException;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

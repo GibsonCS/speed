@@ -1,6 +1,6 @@
 package br.com.codelift.speed.core.domain.vo;
 
-import br.com.codelift.speed.exception.BusinessException;
+import br.com.codelift.speed.core.exception.BusinessException;
 
 import java.util.Objects;
 

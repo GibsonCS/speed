@@ -1,10 +1,10 @@
 package br.com.codelift.speed.core.domain.entity;
 
+import br.com.codelift.speed.core.exception.BusinessException;
 import br.com.codelift.speed.core.domain.vo.Address;
 import br.com.codelift.speed.core.domain.vo.Email;
 import br.com.codelift.speed.core.domain.vo.Id;
 import br.com.codelift.speed.core.domain.vo.Phone;
-import br.com.codelift.speed.exception.BusinessException;
 
 import java.util.UUID;
 
