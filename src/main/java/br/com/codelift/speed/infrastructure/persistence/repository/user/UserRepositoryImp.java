@@ -45,6 +45,6 @@ public class UserRepositoryImp implements UserRepository {
 
     @Override
     public void delete(UUID id) {
-
+        jpaUserRepository.deleteById(id);
     }
 }

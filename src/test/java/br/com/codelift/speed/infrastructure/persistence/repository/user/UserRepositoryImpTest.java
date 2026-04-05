@@ -3,6 +3,8 @@ package br.com.codelift.speed.infrastructure.persistence.repository.user;
 import br.com.codelift.speed.core.domain.entity.User;
 import br.com.codelift.speed.core.domain.repository.RoleRepository;
 import br.com.codelift.speed.core.domain.repository.UserRepository;
+import br.com.codelift.speed.core.exception.BusinessException;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,6 +15,7 @@ import java.util.Set;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
 class UserRepositoryImpTest {
@@ -21,19 +24,16 @@ class UserRepositoryImpTest {
     Set<UUID> VALID_ROLE_IDS = new HashSet<>();
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    RoleRepository roleRepository;
+    private RoleRepository roleRepository;
 
-    @Test
-    void shouldSaveAnUser() {
-        
-        var roleEntity = roleRepository.findByName("USER");
+    User user;
 
-        roleEntity.ifPresent(r -> VALID_ROLE_IDS.add(r.getId()));
-
-        User user = User.create(
+    @BeforeEach
+    void setup() {
+        user = User.create(
                 VALID_ID,
                 "Gibsonz",
                 "silva",
@@ -41,6 +41,14 @@ class UserRepositoryImpTest {
                 "1234568",
                 VALID_ROLE_IDS
         );
+    }
+
+    @Test
+    void shouldSaveAnUser() {
+
+        var roleEntity = roleRepository.findByName("USER");
+
+        roleEntity.ifPresent(r -> VALID_ROLE_IDS.add(r.getId()));
 
         userRepository.save(user);
 
@@ -49,5 +57,15 @@ class UserRepositoryImpTest {
         userSaved.ifPresent(u -> {
             assertEquals(VALID_ID, u.getId().getValue());
         });
+    }
+
+    @Test
+    void shouldDeleteAnUser() {
+
+        userRepository.save(user);
+
+        userRepository.delete(VALID_ID);
+
+        assertThrows(BusinessException.class, () -> userRepository.findById(VALID_ID));
     }
 }
