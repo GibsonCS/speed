@@ -4,7 +4,9 @@ import br.com.codelift.speed.core.domain.entity.User;
 import br.com.codelift.speed.core.domain.repository.UserRepository;
 import br.com.codelift.speed.core.domain.vo.Email;
 import br.com.codelift.speed.core.domain.vo.Name;
+import br.com.codelift.speed.core.exception.BusinessException;
 import br.com.codelift.speed.infrastructure.web.dto.UserRequest;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -70,6 +72,19 @@ class DeleteUserTest {
         deleteUser.execute(user.getId().getValue());
 
         Mockito.verify(userRepository).delete(user.getId().getValue());
+    }
+
+    @Test
+    void shouldNotDeleteAnUnExistsUser() {
+
+        Mockito
+                .when(userRepository.findById(user.getId().getValue()))
+                .thenReturn(Optional.empty())
+        ;
+
+        Assertions.assertThrows(BusinessException.class, () ->
+                deleteUser.execute(user.getId().getValue())
+        );
     }
 
 }
