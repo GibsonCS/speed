@@ -1,4 +1,4 @@
-package br.com.codelift.speed.infrastructure.web.controller.common;
+package br.com.codelift.speed.infrastructure.web.controller.exception;
 
 import java.util.List;
 

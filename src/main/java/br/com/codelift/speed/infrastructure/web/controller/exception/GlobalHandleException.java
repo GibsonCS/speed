@@ -1,4 +1,4 @@
-package br.com.codelift.speed.infrastructure.web.controller.common;
+package br.com.codelift.speed.infrastructure.web.controller.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
