@@ -68,4 +68,14 @@ class UserRepositoryImpTest {
 
         assertThrows(BusinessException.class, () -> userRepository.findById(VALID_ID));
     }
+
+    @Test
+    void shouldGetUser() {
+
+        userRepository.save(user);
+
+        Optional<User> userFounded = userRepository.findById(user.getId().getValue());
+
+        userFounded.ifPresent(value -> assertEquals(user.getId().getValue(), value.getId().getValue()));
+    }
 }
