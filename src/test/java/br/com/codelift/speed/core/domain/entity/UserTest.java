@@ -1,8 +1,7 @@
-package br.com.codelift.speed.domain.entity;
+package br.com.codelift.speed.core.domain.entity;
 
-import br.com.codelift.speed.core.domain.entity.User;
-import br.com.codelift.speed.core.exception.BusinessException;
 import br.com.codelift.speed.core.domain.vo.Email;
+import br.com.codelift.speed.core.exception.BusinessException;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;

@@ -1,7 +1,6 @@
-package br.com.codelift.speed.domain.vo;
+package br.com.codelift.speed.core.domain.vo;
 
 import br.com.codelift.speed.core.exception.BusinessException;
-import br.com.codelift.speed.core.domain.vo.Email;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

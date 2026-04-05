@@ -1,13 +1,12 @@
-package br.com.codelift.speed.usecase;
+package br.com.codelift.speed.core.usecase;
 
 import br.com.codelift.speed.core.domain.entity.Role;
 import br.com.codelift.speed.core.domain.entity.User;
-import br.com.codelift.speed.core.exception.BusinessException;
 import br.com.codelift.speed.core.domain.repository.RoleRepository;
 import br.com.codelift.speed.core.domain.repository.UserRepository;
 import br.com.codelift.speed.core.domain.vo.Email;
 import br.com.codelift.speed.core.domain.vo.Name;
-import br.com.codelift.speed.core.usecase.CreateUser;
+import br.com.codelift.speed.core.exception.BusinessException;
 import br.com.codelift.speed.infrastructure.web.dto.UserRequest;
 import br.com.codelift.speed.infrastructure.web.dto.UserResponse;
 import org.junit.jupiter.api.BeforeEach;

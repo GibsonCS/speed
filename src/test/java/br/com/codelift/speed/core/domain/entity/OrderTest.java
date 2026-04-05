@@ -1,11 +1,9 @@
-package br.com.codelift.speed.domain.entity;
+package br.com.codelift.speed.core.domain.entity;
 
-import br.com.codelift.speed.core.domain.entity.Order;
-import br.com.codelift.speed.core.domain.entity.OrderItem;
 import br.com.codelift.speed.core.domain.entity.enums.OrderItemStatus;
 import br.com.codelift.speed.core.domain.entity.enums.OrderStatus;
-import br.com.codelift.speed.core.exception.BusinessException;
 import br.com.codelift.speed.core.domain.vo.Address;
+import br.com.codelift.speed.core.exception.BusinessException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

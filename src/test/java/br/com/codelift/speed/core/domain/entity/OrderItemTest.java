@@ -1,9 +1,8 @@
-package br.com.codelift.speed.domain.entity;
+package br.com.codelift.speed.core.domain.entity;
 
-import br.com.codelift.speed.core.domain.entity.OrderItem;
 import br.com.codelift.speed.core.domain.entity.enums.OrderItemStatus;
-import br.com.codelift.speed.core.exception.BusinessException;
 import br.com.codelift.speed.core.domain.vo.Address;
+import br.com.codelift.speed.core.exception.BusinessException;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
