@@ -1,8 +1,8 @@
 package br.com.codelift.speed.infrastructure.persistence.repository.user;
 
 import br.com.codelift.speed.core.domain.entity.User;
-import br.com.codelift.speed.core.exception.BusinessException;
 import br.com.codelift.speed.core.domain.repository.UserRepository;
+import br.com.codelift.speed.core.exception.BusinessException;
 import br.com.codelift.speed.infrastructure.persistence.entity.UserEntity;
 import br.com.codelift.speed.infrastructure.persistence.repository.mapper.UserMapper;
 import org.springframework.stereotype.Repository;
@@ -41,5 +41,10 @@ public class UserRepositoryImp implements UserRepository {
     @Override
     public Optional<User> findByEmail(String email) {
         return Optional.empty();
+    }
+
+    @Override
+    public void delete(UUID id) {
+
     }
 }
