@@ -16,6 +16,9 @@ import java.util.UUID;
 @Table(name = "users")
 @Setter
 @Getter
+/* JPA uses @EntityListeners to know which class needs to be called when an event is detected.
+ * The AuditingEntityListener class populates the audit fields
+ * */
 @EntityListeners(AuditingEntityListener.class)
 public class UserEntity {
 
