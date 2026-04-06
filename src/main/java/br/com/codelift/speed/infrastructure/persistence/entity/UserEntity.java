@@ -2,6 +2,7 @@ package br.com.codelift.speed.infrastructure.persistence.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -20,6 +21,7 @@ import java.util.UUID;
  * The AuditingEntityListener class populates the audit fields
  * */
 @EntityListeners(AuditingEntityListener.class)
+@NoArgsConstructor
 public class UserEntity {
 
     @Id
@@ -36,18 +38,6 @@ public class UserEntity {
     @Column(name = "update_date")
     @LastModifiedDate
     private LocalDateTime updateDate;
-
-    public UserEntity() {
-    }
-
-    public UserEntity(UUID id, String name, String lastname, String email, String password, Set<RoleEntity> roles) {
-        this.id = id;
-        this.name = name;
-        this.lastname = lastname;
-        this.email = email;
-        this.password = password;
-        this.roles = roles;
-    }
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(

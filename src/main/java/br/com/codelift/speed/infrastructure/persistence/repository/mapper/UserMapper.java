@@ -39,13 +39,15 @@ public class UserMapper {
 
         Set<RoleEntity> roles = new HashSet<>(jpaRoleRepository.findAllById(user.getRoleIds()));
 
-        return new UserEntity(
-                user.getId().getValue(),
-                user.getName().getValue(),
-                user.getLastname().getValue(),
-                user.getEmail().getValue(),
-                user.getEncryptedPassword(),
-                roles
-        );
+        UserEntity userEntity = new UserEntity();
+
+        userEntity.setId(user.getId().getValue());
+        userEntity.setName(user.getName().getValue());
+        userEntity.setLastname(user.getLastname().getValue());
+        userEntity.setEmail(user.getEmail().getValue());
+        userEntity.setPassword(user.getEncryptedPassword());
+        userEntity.setRoles(roles);
+
+        return userEntity;
     }
 }
