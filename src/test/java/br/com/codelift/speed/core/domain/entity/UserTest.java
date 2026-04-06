@@ -20,6 +20,24 @@ class UserTest {
     private final Set<UUID> VALID_ROLEID = new HashSet<>();
 
     @Test
+    void shouldUpdateName() {
+        VALID_ROLEID.add(UUID.fromString("318df173-32e1-4865-b380-e3f2343955b4"));
+
+        User user = User.create(
+                VALID_ID,
+                VALID_NAME,
+                VALID_LASTNAME,
+                VALID_EMAIL,
+                VALID_PASSWORD,
+                VALID_ROLEID
+        );
+
+        user.updateName("Jão");
+
+        assertEquals("Jão", user.getName().getValue());
+    }
+
+    @Test
     void shouldThrowExceptionWhenNameIsEmpty() {
         VALID_ROLEID.add(UUID.fromString("318df173-32e1-4865-b380-e3f2343955b4"));
         assertThrows(BusinessException.class, () -> User.create(
