@@ -1,9 +1,9 @@
 package br.com.codelift.speed.core.domain.entity;
 
-import br.com.codelift.speed.core.exception.BusinessException;
 import br.com.codelift.speed.core.domain.vo.Email;
 import br.com.codelift.speed.core.domain.vo.Id;
 import br.com.codelift.speed.core.domain.vo.Name;
+import br.com.codelift.speed.core.exception.BusinessException;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -12,7 +12,7 @@ import java.util.UUID;
 public class User {
 
     private final Id id;
-    private final Name name;
+    private Name name;
     private final Name lastname;
     private final Email email;
     private final String encryptedPassword;
@@ -46,6 +46,10 @@ public class User {
         if (password.length() < 6 || password.length() > 12) {
             throw new BusinessException("password cannot be between 6 and 12 characters");
         }
+    }
+
+    public void updateName(String name) {
+        this.name = Name.create(name);
     }
 
     public void addRole(UUID roleId) {
