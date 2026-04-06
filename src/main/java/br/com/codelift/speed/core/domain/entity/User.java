@@ -13,8 +13,8 @@ public class User {
 
     private final Id id;
     private Name name;
-    private final Name lastname;
-    private final Email email;
+    private Name lastname;
+    private Email email;
     private final String encryptedPassword;
     private Set<UUID> roleIds;
 
@@ -50,6 +50,14 @@ public class User {
 
     public void updateName(String name) {
         this.name = Name.create(name);
+    }
+
+    public void updateLastname(String lastname) {
+        this.lastname = Name.create(lastname);
+    }
+
+    public void updateEmail(String email) {
+        this.email = Email.create(email);
     }
 
     public void addRole(UUID roleId) {
