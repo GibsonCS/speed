@@ -32,7 +32,6 @@
 - Nome muito curto/longo → HTTP 400
 
 **Pós-condição:** 
-- Usuário pode fazer login
 - Usuário aparece no banco de dados com role "USER"
 
 **Endpoint:** `POST /users`  
@@ -62,7 +61,7 @@
 **Pós-condição:** Dados do usuário retornados com sucesso
 
 **Endpoint:** `GET /users/{id}`  
-**Status:** ✅ Implementado
+**Status:** Parcialmente implementado
 
 ---
 
@@ -91,7 +90,7 @@
 **Pós-condição:** Usuário atualizado no banco de dados
 
 **Endpoint:** `PUT /users/{id}` ou `PATCH /users/{id}`  
-**Status:** ✅ Implementado
+**Status:** Parcialmente implementado
 
 ---
 
@@ -117,7 +116,7 @@
 **Pós-condição:** Usuário removido do sistema
 
 **Endpoint:** `DELETE /users/{id}`  
-**Status:** ✅ Implementado
+**Status:** Parcialmente implementado
 
 ---
 
@@ -363,5 +362,5 @@
 
 ---
 
-*Documento criado em: 2026-04-07*  
-*Última atualização: 2026-04-07*
+*Documento criado em: 2026-04-06*  
+*Última atualização: 2026-04-06*
